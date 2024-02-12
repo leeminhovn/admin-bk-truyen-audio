@@ -8,6 +8,7 @@ import {
   wrap_main_login_des,
   wrap_main_login_label,
   wrap_main_login_input,
+  wrap_main_login_input_error,
   wrap_main_login_submitButton,
 } from "./LoginPageComponentStyle.module.scss";
 import { useEffect, useState } from "react";
@@ -15,18 +16,16 @@ import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 
 const middleWareEmail = (text) => {
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (emailRegex.test(text.trim())) {
-    return "*Invalid email";
-  } else if (text.length < 6) {
-    return "*Password minimum 6 characters";
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (!emailRegex.test(text.trim())) {
+    return "* Invalid email";
   }
   return "";
 };
 const middleWarePassword = (text) => {
   if (text.length < 6) {
-    return "*Password minimum 6 characters";
-  } else if (text.length.trim() === 0) {
+    return "* Password minimum 6 characters";
+  } else if (text.trim().length === 0) {
     return "*Not be empty";
   }
   return "";
@@ -35,12 +34,24 @@ const middleWarePassword = (text) => {
 export default function LoginPageComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState({});
+  const [error, setError] = useState({ email: "", password: "" });
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClickSubmit = () => {};
-  useEffect(() => {}, [email, password]);
-
+  useEffect(() => {
+    console.log(isDisabled);
+    if (
+      email.length === 0 ||
+      password.length === 0 ||
+      error?.email ||
+      error?.password
+    ) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [email, password]);
+  console.log(error);
   return (
     <div className={wrap}>
       <div className={wrap_main}>
@@ -54,7 +65,17 @@ export default function LoginPageComponent() {
               Email address:
             </label>
             <div className={wrap_main_login_input}>
-              <NormalInput id="email" />
+              <NormalInput
+                id="email"
+                value={email}
+                onChange={({ target: { value } }) => {
+                  setEmail(value);
+                  setError({ ...error, email: middleWareEmail(value) });
+                }}
+              />
+              <p className={wrap_main_login_input_error}>
+                {error?.email || ""}
+              </p>
             </div>
             <label htmlFor="password" className={wrap_main_login_label}>
               Password:
@@ -63,14 +84,18 @@ export default function LoginPageComponent() {
               <NormalInput
                 onChange={({ target: { value } }) => {
                   setPassword(value);
+                  setError({ ...error, password: middleWarePassword(value) });
                 }}
                 value={password}
                 type="password"
                 id="password"
               />
+              <p className={wrap_main_login_input_error}>
+                {error?.password || ""}
+              </p>
             </div>
             <div className={wrap_main_login_submitButton}>
-              <ButtonNormal disabled onClick={handleClickSubmit}>
+              <ButtonNormal disabled={isDisabled} onClick={handleClickSubmit}>
                 Sign In
               </ButtonNormal>
             </div>

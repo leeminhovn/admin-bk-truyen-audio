@@ -8,10 +8,12 @@
     position: fixed;
     left: 50%;
     top: 50%;
+    width: 80%;
+    max-width: 600px;
+
     transform: translate(-50%, -50%);
     &_login {
       padding: 38px 40px;
-      width: 600px;
       &_title {
         font-weight: 700;
         text-align: center;
@@ -34,12 +36,20 @@
       }
       &_input {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
+        &_error {
+          font-weight: 500;
+          font-size: 1.5rem;
+          padding-top: 4px;
+          color: #ea0234;
+          height: 25px;
+          margin: 0;
+        }
       }
       &_submitButton {
         max-width: 300px;
         text-align: center;
-        margin: 0 auto;
+        margin: 20px auto 10px;
       }
     }
   }
