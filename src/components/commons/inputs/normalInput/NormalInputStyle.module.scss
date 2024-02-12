@@ -1,0 +1,13 @@
+.wrap {
+  height: 45px;
+  border-radius: 10px;
+  border: 2px solid #d8d8d8;
+  background-color: #f1f4f9;
+  padding: 20px 15px;
+  font-size: 1.7rem;
+  width: 100%;
+  &:focus {
+    border-color: #a09a9a;
+    outline: 0;
+  }
+}
