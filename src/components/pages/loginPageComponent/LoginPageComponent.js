@@ -15,18 +15,16 @@ import { useEffect, useState } from "react";
 import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 
-const middleWareEmail = (text) => {
+const validateEmail = (email) => {
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  if (!emailRegex.test(text.trim())) {
-    return "* Invalid email";
-  }
-  return "";
+  return emailRegex.test(email.trim()) ? "" : "* Invalid email";
 };
-const middleWarePassword = (text) => {
-  if (text.length < 6) {
+
+const validatePassword = (password) => {
+  if (password.trim().length === 0) {
+    return "* Not be empty";
+  } else if (password.length < 6) {
     return "* Password minimum 6 characters";
-  } else if (text.trim().length === 0) {
-    return "*Not be empty";
   }
   return "";
 };
@@ -51,7 +49,15 @@ export default function LoginPageComponent() {
       setIsDisabled(false);
     }
   }, [email, password]);
-  console.log(error);
+
+  const handleInputChange = (field, value) => {
+    const setErrorField = field === "email" ? validateEmail : validatePassword;
+
+    setError((prevError) => ({ ...prevError, [field]: setErrorField(value) }));
+
+    if (field === "email") setEmail(value);
+    if (field === "password") setPassword(value);
+  };
   return (
     <div className={wrap}>
       <div className={wrap_main}>
@@ -61,25 +67,22 @@ export default function LoginPageComponent() {
             <p className={wrap_main_login_des}>
               Please enter your email and password to continue
             </p>
-            <label htmlFor="email" className={wrap_main_login_label}>
-              Email address:
-            </label>
-            <div className={wrap_main_login_input}>
-              <NormalInput
-                id="email"
-                value={email}
-                onChange={({ target: { value } }) => {
-                  setEmail(value);
-                  setError({ ...error, email: middleWareEmail(value) });
-                }}
-              />
-              <p className={wrap_main_login_input_error}>
-                {error?.email || ""}
-              </p>
-            </div>
-            <label htmlFor="password" className={wrap_main_login_label}>
-              Password:
-            </label>
+            <InputField
+              id="email"
+              label="Email address:"
+              type="text"
+              value={email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              error={error.email}
+            />
+            <InputField
+              id="password"
+              label="Password:"
+              type="password"
+              value={password}
+              onChange={(e) => handleInputChange("password", e.target.value)}
+              error={error.password}
+            />
             <div className={wrap_main_login_input}>
               <NormalInput
                 onChange={({ target: { value } }) => {
@@ -103,5 +106,19 @@ export default function LoginPageComponent() {
         </CardWrapGeneral>
       </div>
     </div>
+  );
+}
+
+function InputField({ id, label, type, value, onChange, error }) {
+  return (
+    <>
+      <label htmlFor={id} className={wrap_main_login_label}>
+        {label}
+      </label>
+      <div className={wrap_main_login_input}>
+        <NormalInput id={id} type={type} value={value} onChange={onChange} />
+        <p className={wrap_main_login_input_error}>{error || ""}</p>
+      </div>
+    </>
   );
 }

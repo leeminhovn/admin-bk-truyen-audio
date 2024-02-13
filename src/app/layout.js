@@ -1,3 +1,4 @@
+import ReduxProvider from "../../provider/redux/ReduxProvider";
 import "./globals.css";
 
 import { Quicksand } from "next/font/google";
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/assets/images/icons/bk_icon.png" sizes="any" />
-      <body className={QuicksandDataFont.className}>{children}</body>
+      <body className={QuicksandDataFont.className}>
+        <ReduxProvider>{children} </ReduxProvider>
+      </body>
     </html>
   );
 }
