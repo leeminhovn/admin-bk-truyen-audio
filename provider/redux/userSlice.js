@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiAdminLogin } from "../../services/api/auth";
+import { setCookie } from "@/utils/features/localStorage";
 
 const userSlice = createSlice({
   name: "userSlice",
@@ -13,10 +14,20 @@ const userSlice = createSlice({
       .addCase(userLoginAction.pending, (state, action) => {
         state.status = "login-loading";
       })
-
+      .addCase(userLoginAction.rejected, (state, action) => {
+        state.status = "login-faile";
+      })
       .addCase(userLoginAction.fulfilled, (state, action) => {
         state.userInfo = action.payload;
-        state.status = "login-done";
+
+        setCookie("adminToken", action.payload.accessToken, 30);
+        setCookie(
+          "adminRefreshToken",
+          action.payload.refreshToken,
+          24 * 60 * 60
+        );
+
+        state.status = "login-success";
       });
   },
 });
@@ -40,7 +51,7 @@ export const userLoginAction = createAsyncThunk(
       } else {
         setErr({ email: err });
       }
-      return {};
+      return Promise.reject();
     }
   }
 );

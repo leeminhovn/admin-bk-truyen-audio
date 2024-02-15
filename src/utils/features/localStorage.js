@@ -16,12 +16,10 @@ export function getCookie(cookieName) {
   return null;
 }
 
-export function setCookie(name, value, daysToExpire) {
+export function setCookie(name, value, secondsExpires) {
   // Create a new Date object for the expiration date
   const expirationDate = new Date();
-  expirationDate.setTime(
-    expirationDate.getTime() + daysToExpire * 24 * 60 * 60 * 1000
-  );
+  expirationDate.setTime(expirationDate.getTime() + secondsExpires * 1000);
   // Convert the expiration date to the UTC format
   const expires = "expires=" + expirationDate.toUTCString();
   // Encode the name and value of the cookie

@@ -93,7 +93,7 @@ export default function LoginPageComponent() {
             <div className={wrap_main_login_submitButton}>
               <ButtonNormal
                 disabled={isDisabled}
-                isLoading={userStates.status === "login-loading"}
+                is-loading={`${userStates.status === "login-loading"}`}
                 onClick={handleClickSubmit}
               >
                 Sign In

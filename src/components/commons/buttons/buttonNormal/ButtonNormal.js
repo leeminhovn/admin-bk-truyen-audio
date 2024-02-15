@@ -7,14 +7,16 @@ import {
 } from "./ButtonNormalStyle.module.scss";
 import animationSvg from "@/../public/assets/animations/loading_button_image.svg";
 
+
 const buttonClass = {
   purple: purple_btn,
 };
 
+
 export default function ButtonNormal(props) {
   const classBtn = buttonClass[props.colorBtn] || buttonClass.purple;
   const classDisabled = props.disabled ? disabled : "";
-  const isLoading = props.isLoading;
+  const isLoading = props["is-loading"] === "true";
 
   return (
     <button
