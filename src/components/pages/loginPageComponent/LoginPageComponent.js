@@ -14,6 +14,8 @@ import {
 import { useEffect, useState } from "react";
 import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
+import { userLoginAction } from "../../../../provider/redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const validateEmail = (email) => {
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -34,8 +36,12 @@ export default function LoginPageComponent() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ email: "", password: "" });
   const [isDisabled, setIsDisabled] = useState(false);
+  const dispatch = useDispatch();
+  const userStates = useSelector((state) => state.userSlice);
+  const handleClickSubmit = () => {
+    dispatch(userLoginAction({ email, password, setError }));
+  };
 
-  const handleClickSubmit = () => {};
   useEffect(() => {
     console.log(isDisabled);
     if (
@@ -83,22 +89,13 @@ export default function LoginPageComponent() {
               onChange={(e) => handleInputChange("password", e.target.value)}
               error={error.password}
             />
-            <div className={wrap_main_login_input}>
-              <NormalInput
-                onChange={({ target: { value } }) => {
-                  setPassword(value);
-                  setError({ ...error, password: middleWarePassword(value) });
-                }}
-                value={password}
-                type="password"
-                id="password"
-              />
-              <p className={wrap_main_login_input_error}>
-                {error?.password || ""}
-              </p>
-            </div>
+
             <div className={wrap_main_login_submitButton}>
-              <ButtonNormal disabled={isDisabled} onClick={handleClickSubmit}>
+              <ButtonNormal
+                disabled={isDisabled}
+                isLoading={userStates.status === "login-loading"}
+                onClick={handleClickSubmit}
+              >
                 Sign In
               </ButtonNormal>
             </div>

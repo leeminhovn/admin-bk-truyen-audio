@@ -2,9 +2,10 @@
   outline: 0;
   border: 0;
   cursor: pointer;
-  line-height: 50px;
+  min-height: 50px;
   width: 100%;
   border-radius: 9px;
+  position: relative;
   color: white;
   font-size: 1.7rem;
   transition: all 0.2s;
@@ -18,4 +19,12 @@
 }
 .disabled {
   background-color: #aeaeae;
+}
+.loadingAnimation {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
