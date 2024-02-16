@@ -1,6 +1,10 @@
+:root {
+  --offset-el-indicator: 0px;
+}
 * {
   box-sizing: border-box;
   --height-header-web-top: 70px;
+  --height-nav-left-bar: 50px;
 }
 html,
 body {

@@ -1,26 +1,44 @@
 .wrapper {
-  height: 50px;
+  height: var(--height-nav-left-bar);
   position: relative;
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 25px;
   margin-right: 20px;
   cursor: pointer;
   border-radius: 12px;
 
-  &_active {
-    background-color: #4880ff;
-  }
   img {
     height: 25px;
     margin: 0 15px;
     width: auto;
   }
   span {
-    color: white;
+    color: black;
     font-size: 1.4rem;
     font-weight: 500;
   }
+  &_active {
+    background-color: #4880ff;
+    span {
+      color: white;
+    }
+  }
 }
 .ListItemsNavWrapper {
+  position: relative;
+}
+.itemLinkNav_active ~ .indicator {
+  left: 0px;
+}
+.indicator {
+  position: absolute;
+  // top: -999999px;
+  left: -9999px;
+  top: var(--offset-el-indicator);
+  height: var(--height-nav-left-bar);
+  width: 4px;
+  background-color: #4880ff;
+  transition: all 0.8s;
+  border-radius: 0 6px 6px 0;
 }
