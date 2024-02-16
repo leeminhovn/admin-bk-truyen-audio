@@ -1,10 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiAdminLogin } from "../../services/api/auth";
-import { setCookie } from "@/utils/features/localStorage";
 
-const userSlice = createSlice({
+const storysSlice = createSlice({
   name: "userSlice",
-  initialState: { status: "", userInfo: {} },
+  initialState: { status: "", listStorys: [] },
   reducers: {
     loginAction() {},
   },
@@ -31,7 +29,6 @@ const userSlice = createSlice({
       });
   },
 });
-
 export const userLoginAction = createAsyncThunk(
   "user/loginAction",
   async (data) => {
@@ -55,5 +52,4 @@ export const userLoginAction = createAsyncThunk(
     }
   }
 );
-
-export default userSlice.reducer;
+export default storysSlice.reducer;

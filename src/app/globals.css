@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  --height-header-web-top: 70px;
 }
 html,
 body {
@@ -14,4 +15,7 @@ html {
 body {
 }
 * {
+}
+a {
+  text-decoration: none;
 }

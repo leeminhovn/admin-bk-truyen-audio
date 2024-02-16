@@ -1,3 +1,4 @@
+import WrapperWeb from "@/components/commons/layouts/wrapperWeb/WrapperWeb";
 import ReduxProvider from "../../provider/redux/ReduxProvider";
 import "./globals.css";
 
@@ -18,7 +19,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <link rel="icon" href="/assets/images/icons/bk_icon.png" sizes="any" />
       <body className={QuicksandDataFont.className}>
-        <ReduxProvider>{children} </ReduxProvider>
+        <ReduxProvider>
+          <WrapperWeb>{children}</WrapperWeb>{" "}
+        </ReduxProvider>
       </body>
     </html>
   );

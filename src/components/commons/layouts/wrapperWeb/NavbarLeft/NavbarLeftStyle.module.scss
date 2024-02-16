@@ -1,0 +1,15 @@
+.wrapper {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &_top {
+    height: 70px;
+    text-align: center;
+    margin-bottom: 15px;
+    & > img {
+      height: 70px;
+      width: auto;
+    }
+  }
+}
