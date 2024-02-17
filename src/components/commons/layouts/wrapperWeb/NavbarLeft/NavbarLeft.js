@@ -8,7 +8,12 @@ import user_black from "@/../public/assets/images/icons/user_black.svg";
 import user_white from "@/../public/assets/images/icons/user_white.svg";
 import notice_black from "@/../public/assets/images/icons/notice_black.svg";
 import notice_white from "@/../public/assets/images/icons/notice_white.svg";
+import mail_black from "@/../public/assets/images/icons/mail_black.svg";
+import mail_white from "@/../public/assets/images/icons/mail_white.svg";
+import user_feedback_black from "@/../public/assets/images/icons/user_feedback_black.svg";
+import user_feedback_white from "@/../public/assets/images/icons/user_feedback_white.svg";
 import ListItemsNav from "./itemNav/ListItemsNav";
+
 class Item {
   constructor(icon, title, link, activeIcon) {
     this.icon = icon;
@@ -18,9 +23,23 @@ class Item {
   }
 }
 const dataNavLeft1 = [
-  new Item(book_black, "Storys ", "/storys-manage", book_white),
-  new Item(user_black, "Users ", "/users-manage", user_white),
-  new Item(user_black, "Notification ", "/notifications-manage", user_white),
+  new Item(book_black, "Storys ", "/storys-managent", book_white),
+  new Item(user_black, "Users ", "/users-managent", user_white),
+  new Item(
+    notice_black,
+    "Notification ",
+    "/notifications-managent",
+    notice_white
+  ),
+  new Item(mail_black, "Mail ", "/mail-managent", mail_white),
+  new Item(
+    user_feedback_black,
+    "Feedback ",
+    "/feedback-managent",
+    user_feedback_white
+  ),
+
+  // mail management
 ];
 
 export default function NavBarLeft() {

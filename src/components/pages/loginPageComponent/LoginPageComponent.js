@@ -16,6 +16,7 @@ import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 import { userLoginAction } from "../../../../provider/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const validateEmail = (email) => {
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -34,16 +35,21 @@ const validatePassword = (password) => {
 export default function LoginPageComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [error, setError] = useState({ email: "", password: "" });
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter(); // Sử dụng useRouter hook
   const userStates = useSelector((state) => state.userSlice);
-  const handleClickSubmit = () => {
-    dispatch(userLoginAction({ email, password, setError }));
+
+  const handleClickSubmit = async () => {
+    const { error } = await dispatch(
+      userLoginAction({ email, password, setError })
+    );
+    !error && router.push("storys-managent");
   };
 
   useEffect(() => {
-    console.log(isDisabled);
     if (
       email.length === 0 ||
       password.length === 0 ||

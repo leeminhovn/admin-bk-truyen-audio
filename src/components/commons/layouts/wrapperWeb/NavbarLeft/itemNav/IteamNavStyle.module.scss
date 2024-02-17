@@ -7,12 +7,16 @@
   margin-right: 20px;
   cursor: pointer;
   border-radius: 12px;
-
-  img {
-    height: 25px;
-    margin: 0 15px;
-    width: auto;
+  section {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    img {
+      height: auto;
+      width: 25px;
+    }
   }
+
   span {
     color: black;
     font-size: 1.4rem;

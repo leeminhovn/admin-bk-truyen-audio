@@ -30,7 +30,9 @@ export default function IteamNav({
       href={link}
     >
       <div className={`${wrapper} ${isActive ? wrapper_active : ""}`}>
-        <Image src={isActive ? activeIcon : icon} alt="icon page" />
+        <section>
+          <Image src={isActive ? activeIcon : icon} alt="icon page" />
+        </section>
         <span>{title}</span>
       </div>
     </Link>
