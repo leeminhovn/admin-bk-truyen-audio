@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/", // automatically becomes /docs/with-basePath
-        destination: "/dashboard", // automatically becomes /docs/another
+        destination: "/storys-managent", // automatically becomes /docs/another
       },
     ];
   },

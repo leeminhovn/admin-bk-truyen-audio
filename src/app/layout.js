@@ -1,7 +1,6 @@
 import WrapperWeb from "@/components/commons/layouts/wrapperWeb/WrapperWeb";
 import ReduxProvider from "../../provider/redux/ReduxProvider";
 import "./globals.css";
-
 import { Quicksand } from "next/font/google";
 
 const QuicksandDataFont = Quicksand({

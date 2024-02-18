@@ -1,6 +1,7 @@
 // Trong Table.js
-import CardWrapLayout from "../../cardsWrap/cardWrapLayout/CardWrapLayout";
+import Image from "next/image";
 import styles from "./NormalTableStyle.module.scss";
+import loadingIcon from "@/../public/assets/animations/loading_button_image.svg";
 
 // Component cho Header của Table
 const TableHeader = ({ columns }) => (
@@ -33,13 +34,17 @@ const TableBody = ({ columns, data }) => (
 // Component Table chính
 export default function NormalTable({ columns, data, isLoading }) {
   return (
-    <table className={styles.table}>
-      <TableHeader columns={columns} />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
+    <div className={styles.wrap}>
+      <table className={styles.table}>
+        <TableHeader columns={columns} />
+
         <TableBody columns={columns} data={data} />
+      </table>
+      {isLoading && (
+        <div className={styles.isLoading}>
+          <Image src={loadingIcon} alt="loading" />
+        </div>
       )}
-    </table>
+    </div>
   );
 }
