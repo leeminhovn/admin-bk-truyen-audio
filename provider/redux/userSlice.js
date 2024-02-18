@@ -3,7 +3,7 @@ import { apiAdminLogin } from "../../services/api/auth";
 import { setCookie } from "@/utils/features/localStorage";
 
 const userSlice = createSlice({
-  name: "userSlice",
+  name: "user",
   initialState: { status: "", userInfo: {} },
   reducers: {
     loginAction() {},
@@ -56,4 +56,8 @@ export const userLoginAction = createAsyncThunk(
   }
 );
 
+export const userAdminGetInfo = createAsyncThunk(
+  "admin/userAdminGetInfo",
+  async (data) => {}
+);
 export default userSlice.reducer;

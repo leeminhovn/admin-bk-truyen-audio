@@ -1,0 +1,81 @@
+/* Table.module.css */
+
+.table {
+  width: 100%;
+  border: 1px solid #b9b9b9;
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 0 1px #5a2f14;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  border-radius: 11px;
+  tbody {
+    box-sizing: inherit;
+    tr {
+      td {
+        font-size: 1.5rem;
+        border: solid 1px #5a2f14;
+        border-width: 1px 1px 1px 1px;
+        &:first-child {
+          border-width: 1px 1px 1px 0px;
+        }
+        &:last-child {
+          border-width: 1px 0px 1px 1px;
+        }
+      }
+      &:first-child {
+        td {
+          border-width: 2px 1px 1px 1px;
+          &:first-child {
+            border-width: 2px 1px 1px 0px;
+          }
+          &:last-child {
+            border-width: 2px 0px 1px 1px;
+          }
+        }
+      }
+      &:last-child {
+        td {
+          border-width: 1px 1px 0px 1px;
+
+          &:first-child {
+            border-width: 1px 1px 0px 0px;
+          }
+          &:last-child {
+            border-width: 1px 0px 0px 1px;
+          }
+        }
+      }
+    }
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+  .head_table {
+    td {
+      font-size: 17px;
+      color: #5a2f14;
+      font-weight: 800;
+    }
+  }
+}
+
+.th,
+.td {
+  //   border: 1px solid black;
+}
+.td {
+  font-size: 1.4rem;
+  padding: 9px;
+  font-weight: 500;
+}
+.th {
+  text-align: center;
+  padding: 15px;
+
+  font-size: 1.7rem;
+  color: #5a2f14;
+  font-weight: 700;
+}

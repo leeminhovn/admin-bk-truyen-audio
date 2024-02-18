@@ -1,6 +1,11 @@
 "use client";
 import Image from "next/image";
-import { wrapper, wrapper_top } from "./NavbarLeftStyle.module.scss";
+import {
+  wrapper,
+  wrapper_top,
+  wrapper_top_ava,
+  wrapper_top_infoUser,
+} from "./NavbarLeftStyle.module.scss";
 import iconBk from "@/../public/assets/images/icons/bk_icon.png";
 import book_black from "@/../public/assets/images/icons/book_black.svg";
 import book_white from "@/../public/assets/images/icons/book_white.svg";
@@ -13,6 +18,7 @@ import mail_white from "@/../public/assets/images/icons/mail_white.svg";
 import user_feedback_black from "@/../public/assets/images/icons/user_feedback_black.svg";
 import user_feedback_white from "@/../public/assets/images/icons/user_feedback_white.svg";
 import ListItemsNav from "./itemNav/ListItemsNav";
+import { useSelector } from "react-redux";
 
 class Item {
   constructor(icon, title, link, activeIcon) {
@@ -43,10 +49,22 @@ const dataNavLeft1 = [
 ];
 
 export default function NavBarLeft() {
+  const { userInfo } = useSelector((state) => state.user);
+
   return (
     <div className={wrapper}>
       <div className={wrapper_top}>
-        <Image width={100} height={60} src={iconBk} alt="logo" />
+        <Image
+          className={wrapper_top_ava}
+          width={100}
+          height={60}
+          src={iconBk}
+          alt="logo"
+        />
+        <section className={wrapper_top_infoUser}>
+          <b>{userInfo.name}</b>
+          <span>Admin</span>
+        </section>
       </div>
       <ListItemsNav data={dataNavLeft1} />
     </div>

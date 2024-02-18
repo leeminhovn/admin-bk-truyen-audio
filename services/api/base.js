@@ -12,7 +12,7 @@ const instance = axios.create({
 // 	}
 // 	option = {
 // 		params,
-// 		header {
+// 		headers {
 // 			'MyCustomHeader1': '1',
 // 			'MyCustomHeader2': '2'
 // 		}

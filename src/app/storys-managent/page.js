@@ -1,3 +1,5 @@
-export default function StoryManager() {
-  return <h1>storys</h1>;
+import StorysPage from "@/components/pages/storysPage/StorysPage";
+
+export default function StoryManagent() {
+  return <StorysPage />;
 }

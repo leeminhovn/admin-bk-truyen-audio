@@ -5,11 +5,28 @@
   height: 100%;
   &_top {
     height: 70px;
-    text-align: center;
     margin-bottom: 15px;
-    & > img {
-      height: 70px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    &_ava {
+      border-radius: 50%;
+      cursor: pointer;
+      height: 60px;
       width: auto;
+      margin-right: 10px;
+      margin-left: -20px;
+    }
+    &_infoUser {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      & > span {
+        font-size: 1.3rem;
+      }
+      & > b {
+        font-size: 1.5rem;
+      }
     }
   }
 }

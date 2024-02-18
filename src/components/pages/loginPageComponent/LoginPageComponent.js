@@ -40,7 +40,7 @@ export default function LoginPageComponent() {
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter(); // Sử dụng useRouter hook
-  const userStates = useSelector((state) => state.userSlice);
+  const userStates = useSelector((state) => state.user);
 
   const handleClickSubmit = async () => {
     const { error } = await dispatch(

@@ -1,4 +1,4 @@
-import { post } from "./base";
+import { get, post } from "./base";
 import endpoints from "./endpoints";
 
 export const apiAdminLogin = async ({ email, password }) => {
