@@ -45,6 +45,11 @@ export default function NormalTable({ columns, data, isLoading }) {
           <Image src={loadingIcon} alt="loading" />
         </div>
       )}
+      {!isLoading && data.length === 0 && (
+        <div className={styles.notFoundData}>
+          <b>Not found data</b>
+        </div>
+      )}
     </div>
   );
 }

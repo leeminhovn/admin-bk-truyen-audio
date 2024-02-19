@@ -61,6 +61,9 @@
   tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
   }
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
   .head_table {
     td {
       font-size: 17px;
@@ -96,5 +99,14 @@
     display: inline-block;
     width: 50px;
     height: auto;
+  }
+}
+.notFoundData {
+  position: absolute;
+  left: 50%;
+  top: calc(65%);
+  transform: translate(-50%, -50%);
+  b {
+    font-size: 1.5rem;
   }
 }

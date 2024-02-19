@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { apiGetAllStorys } from "../../../../services/api/storys";
 import styles from "./StorysPageStyle.module.scss";
 import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
+import SearchBar from "@/components/commons/inputs/searchBar/SearchBar";
+import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
 
 const columns = [
   { header: "Story", field: "story_name", width: "25%" },
@@ -15,7 +17,7 @@ const columns = [
 
 export default function StorysPage() {
   const [data, setData] = useState([]);
-  const [infoGetData, setInfoGetData] = useState({ page: 0, limit: 10 });
+  const [infoGetData, setInfoGetData] = useState({ page: 0, limit: 12, search:"" });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -35,7 +37,10 @@ export default function StorysPage() {
     <>
       <h1 className="titlePageManagent">Storys</h1>
       <div className={styles.wrapTable}>
-        {/* <CardWrapLayout></CardWrapLayout> */}
+        <SearchHeaderStory
+          setInfoGetData={setInfoGetData}
+          setLoading={setLoading}
+        />
         <NormalTable isLoading={loading} columns={columns} data={data} />
       </div>
     </>
