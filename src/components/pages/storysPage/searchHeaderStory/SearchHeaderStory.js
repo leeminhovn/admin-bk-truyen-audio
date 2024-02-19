@@ -22,9 +22,7 @@ export default function SearchHeaderStory({ setInfoGetData }) {
   const onChange = ({ target }) => {
     setValue(target.value);
 
-    if (value.length === 0) {
-      setStatusSearch("not-search");
-    }
+    statusSearch !== "not-search" && setStatusSearch("not-search");
   };
   return (
     <CardWrapLayout className={styles.headerSearch}>
