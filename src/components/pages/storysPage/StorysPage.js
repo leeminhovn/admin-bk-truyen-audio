@@ -3,9 +3,8 @@ import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { useEffect, useState } from "react";
 import { apiGetAllStorys } from "../../../../services/api/storys";
 import styles from "./StorysPageStyle.module.scss";
-import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
-import SearchBar from "@/components/commons/inputs/searchBar/SearchBar";
 import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
+import { useRouter } from "next/navigation";
 
 const columns = [
   { header: "Story", field: "story_name", width: "25%" },
@@ -17,8 +16,14 @@ const columns = [
 
 export default function StorysPage() {
   const [data, setData] = useState([]);
-  const [infoGetData, setInfoGetData] = useState({ page: 0, limit: 12, search:"" });
+
+  const [infoGetData, setInfoGetData] = useState({
+    page: 0,
+    limit: 12,
+    search: "",
+  });
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +37,9 @@ export default function StorysPage() {
 
     return () => {};
   }, [infoGetData]);
-
+  const handleClickRow = (data) => {
+    router.push(`/storys-managent/${data._id}`);
+  };
   return (
     <>
       <h1 className="titlePageManagent">Storys</h1>
@@ -41,7 +48,12 @@ export default function StorysPage() {
           setInfoGetData={setInfoGetData}
           setLoading={setLoading}
         />
-        <NormalTable isLoading={loading} columns={columns} data={data} />
+        <NormalTable
+          onClickRow={handleClickRow}
+          isLoading={loading}
+          columns={columns}
+          data={data}
+        />
       </div>
     </>
   );

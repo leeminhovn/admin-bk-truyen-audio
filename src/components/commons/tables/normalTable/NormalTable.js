@@ -17,10 +17,10 @@ const TableHeader = ({ columns }) => (
 );
 
 // Component cho Body của Table
-const TableBody = ({ columns, data }) => (
+const TableBody = ({ columns, data, onClickRow = () => {} }) => (
   <tbody>
     {data.map((row, rowIndex) => (
-      <tr key={rowIndex}>
+      <tr onClick={() => onClickRow(row)} key={rowIndex}>
         {columns.map((column, columnIndex) => (
           <td className={styles.td} key={columnIndex}>
             {row[column.field]}
@@ -32,13 +32,18 @@ const TableBody = ({ columns, data }) => (
 );
 
 // Component Table chính
-export default function NormalTable({ columns, data, isLoading }) {
+export default function NormalTable({
+  columns,
+  data,
+  isLoading,
+  onClickRow = () => {},
+}) {
   return (
     <div className={styles.wrap}>
       <table className={styles.table}>
         <TableHeader columns={columns} />
 
-        <TableBody columns={columns} data={data} />
+        <TableBody onClickRow={onClickRow} columns={columns} data={data} />
       </table>
       {isLoading && (
         <div className={styles.isLoading}>
