@@ -4,6 +4,8 @@ import styles from "./StorysInfoPageStyle.module.scss";
 import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
 import EditableText from "@/components/commons/inputs/editableText/EditableText";
 import { useState } from "react";
+import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
+import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 
 const dataShowInfoStory = [
   { label: "Auhtor", field: "auhtor_name" },
@@ -27,6 +29,7 @@ export default function StoryInfoPage({ storyInfo }) {
             <LeftSideTop
               storyInfo={newInfoStory.story}
               setNewInfoStory={setNewInfoStory}
+              newInfoStory={newInfoStory}
             />
             <RightSideTop
               storyInfo={newInfoStory.story}
@@ -39,13 +42,14 @@ export default function StoryInfoPage({ storyInfo }) {
   );
 }
 
-const LeftSideTop = ({ storyInfo, setNewInfoStory }) => {
+const LeftSideTop = ({ storyInfo, setNewInfoStory, newInfoStory }) => {
   return (
     <div className={styles.wrapPage_top_leftSide}>
       <StoryPicture
         picture={storyInfo.story_picture}
         setNewInfoStory={setNewInfoStory}
       />
+      <ControllerUpdate storyInfo={storyInfo} newInfoStory={newInfoStory} />
 
       <ul className={styles.wrapPage_top_leftSide_list}>
         {dataShowInfoStory.map((data, idx) => (
@@ -109,6 +113,7 @@ const QuickReviewComponent = ({ quickReviewed, setNewInfoStory }) => {
     </div>
   );
 };
+
 const TitleStory = ({ story_name, setNewInfoStory }) => {
   const onSubmit = (newText) => {
     setStoryUpdate("story_name", newText, setNewInfoStory);
@@ -142,17 +147,14 @@ function ChooseStatusStory({ completed_status, setNewInfoStory }) {
   return (
     <select
       className={styles.completeStatus}
+      defaultValue={completed_status}
       onChange={(e) => {
         setStoryUpdate("completed_status", e.target.value, setNewInfoStory);
       }}
     >
       {dataSelect.map((name, idx) => {
         return (
-          <option
-            selected={completed_status === idx}
-            defaultValue={idx}
-            key={idx}
-          >
+          <option value={idx} key={idx}>
             {name}
           </option>
         );
@@ -160,6 +162,26 @@ function ChooseStatusStory({ completed_status, setNewInfoStory }) {
     </select>
   );
 }
+
+function ControllerUpdate({ newInfoStory, storyInfo }) {
+  return (
+    <div className={styles.controllerUpdate}>
+      <ButtonNormal
+        data-color-btn={"green"}
+        className={styles.controllerUpdate_submitBtn}
+      >
+        Save
+      </ButtonNormal>
+      <ButtonNormal
+        data-color-btn={"yellow"}
+        className={styles.controllerUpdate_backBtn}
+      >
+        Back
+      </ButtonNormal>
+    </div>
+  );
+}
+
 function setStoryUpdate(field, newText, setState) {
   setState((prev) => {
     return {

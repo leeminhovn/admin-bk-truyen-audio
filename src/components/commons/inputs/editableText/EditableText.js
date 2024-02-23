@@ -19,7 +19,6 @@ const EditableText = ({ onSubmit = () => {}, initialText = "" }) => {
 
   useEffect(() => {
     setText(initialText);
-    console.log(initialText, "check");
   }, [initialText]);
 
   const handleTextClick = () => {

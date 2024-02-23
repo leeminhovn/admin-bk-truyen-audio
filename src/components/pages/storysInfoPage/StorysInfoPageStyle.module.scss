@@ -44,3 +44,17 @@
   cursor: pointer;
   border: solid 1px #5a2f14;
 }
+.controllerUpdate {
+  display: flex;
+  @mixin styleBtn {
+    min-height: 45px;
+    margin: 12px;
+  }
+
+  &_submitBtn {
+    @include styleBtn;
+  }
+  &_backBtn {
+    @include styleBtn;
+  }
+}
