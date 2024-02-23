@@ -20,8 +20,7 @@ export const apiGetAllStorys = async ({ page, limit, search }) => {
 export const getStorysInfo = async (story_id) => {
   const endpoint = endpoints.GET_STORY_INFO;
   try {
-    const result = await get(endpoint, { params: { story_id } });
-    console.log(result);
+    const result = await get(endpoint, { params: { story_id: story_id } });
     return result;
   } catch (err) {
     console.log(err);

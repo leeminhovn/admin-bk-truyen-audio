@@ -1,0 +1,10 @@
+.wrap {
+  display: inline-block;
+  cursor: pointer;
+  &:hover > span {
+    text-decoration: underline;
+  }
+}
+.input {
+  border: solid 1px #5a2f14;
+}
