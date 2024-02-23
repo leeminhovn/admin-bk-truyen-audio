@@ -53,8 +53,8 @@ const EditableText = ({ onSubmit = () => {}, initialText = "" }) => {
           autoFocus
           onKeyDown={handleKeyDown}
           style={{
-            width: `${size.width}px`, // Áp dụng chiều rộng
-            height: `${size.height}px`, // Áp dụng chiều cao
+            width: `${Math.max(size.width, 20)}px`, // Áp dụng chiều rộng
+            height: `${Math.max(size.height, 20)}px`, // Áp dụng chiều cao
           }}
         />
       ) : (
