@@ -28,13 +28,11 @@ instance.interceptors.response.use(
         if (!accessToken) {
           return Promise.reject();
         }
-        console.log(accessToken);
         setCookie("adminToken", accessToken); // lưu accessToken mới
         instance.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`; // cập nhật token trong headers
         originalRequest.headers["Authorization"] = `Bearer ${accessToken}`; // cập nhật token cho request gốc
-        console.log(originalRequest);
         return instance(originalRequest); // thực hiện lại request gốc với accessToken mới
       } catch (refreshError) {
         // Xử lý lỗi khi không thể làm mới token (ví dụ: refreshToken cũng đã hết hạn)

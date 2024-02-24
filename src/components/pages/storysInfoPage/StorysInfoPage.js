@@ -148,7 +148,11 @@ const ShowStoryInfoBelowPicture = ({
 };
 
 function ChooseStatusStory({ completed_status, setNewInfoStory }) {
-  const dataSelect = ["Update", "Full", "Drop"];
+  const dataSelect = [
+    { value: "0", label: "Update" },
+    { value: "1", label: "Full" },
+    { value: "2", label: "Drop" },
+  ];
   // return (
   //   <select
   //     className={styles.completeStatus}
@@ -169,11 +173,11 @@ function ChooseStatusStory({ completed_status, setNewInfoStory }) {
   return (
     <SelectionCustom
       className={styles.completeStatus}
-      defaultValue={completed_status}
+      defaultValue={dataSelect[completed_status]}
       onChange={(e) => {
-        setStoryUpdate("completed_status", e.target.value, setNewInfoStory);
+        setStoryUpdate("completed_status", Number(e.value), setNewInfoStory);
       }}
-      data-render={dataSelect}
+      options={dataSelect}
     />
   );
 }

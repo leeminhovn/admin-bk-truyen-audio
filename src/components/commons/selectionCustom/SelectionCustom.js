@@ -1,21 +1,19 @@
-import { useRef } from "react";
 import styles from "./SelectionCustomStyle.module.scss";
+import Select from "react-select";
 
-export default function SelectionCustom(props) {
-  const dataRender = props["data-render"] || [];
-  const refSelect = useRef();
-
+export default function SelectionCustom({
+  onChange = () => {},
+  options = [],
+  defaultValue,
+  className = "",
+}) {
   return (
-    <div className={styles.wrap}>
-      <select ref={refSelect} {...props} size="1">
-        {dataRender.map((item, index) => {
-          return (
-            <option key={index} value={index}>
-              {item}
-            </option>
-          );
-        })}
-      </select>
+    <div className={styles.wrap + " " + className}>
+      <Select
+        defaultValue={defaultValue}
+        onChange={onChange}
+        options={options}
+      />
     </div>
   );
 }
