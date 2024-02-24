@@ -9,7 +9,7 @@ export function getCookie(cookieName) {
     const trimmedName = name.trim();
     if (trimmedName === cookieName) {
       // Return the value of the cookie if the name matches
-      return JSON.parse(value);
+      return value ? JSON.parse(value) : null;
     }
   }
   // Return null if the cookie with the given name is not found

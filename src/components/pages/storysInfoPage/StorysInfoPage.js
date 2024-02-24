@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import _ from "lodash";
 import { updateStoryInfoAdmin } from "../../../../services/api/storys";
 import { getCookie } from "@/utils/features/localStorage";
+import SelectionCustom from "@/components/commons/selectionCustom/SelectionCustom";
 
 const dataShowInfoStory = [
   { label: "Auhtor", field: "auhtor_name" },
@@ -148,22 +149,32 @@ const ShowStoryInfoBelowPicture = ({
 
 function ChooseStatusStory({ completed_status, setNewInfoStory }) {
   const dataSelect = ["Update", "Full", "Drop"];
+  // return (
+  //   <select
+  //     className={styles.completeStatus}
+  //     defaultValue={completed_status}
+  //     onChange={(e) => {
+  //       setStoryUpdate("completed_status", e.target.value, setNewInfoStory);
+  //     }}
+  //   >
+  //     {dataSelect.map((name, idx) => {
+  //       return (
+  //         <option value={idx} key={idx}>
+  //           {name}
+  //         </option>
+  //       );
+  //     })}
+  //   </select>
+  // );
   return (
-    <select
+    <SelectionCustom
       className={styles.completeStatus}
       defaultValue={completed_status}
       onChange={(e) => {
         setStoryUpdate("completed_status", e.target.value, setNewInfoStory);
       }}
-    >
-      {dataSelect.map((name, idx) => {
-        return (
-          <option value={idx} key={idx}>
-            {name}
-          </option>
-        );
-      })}
-    </select>
+      data-render={dataSelect}
+    />
   );
 }
 
