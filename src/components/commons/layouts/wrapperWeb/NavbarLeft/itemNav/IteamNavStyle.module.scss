@@ -1,0 +1,48 @@
+.wrapper {
+  height: var(--height-nav-left-bar);
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 12px;
+  section {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    img {
+      height: auto;
+      width: 25px;
+    }
+  }
+
+  span {
+    color: black;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+  &_active {
+    background-color: #4880ff;
+    span {
+      color: white;
+    }
+  }
+}
+.ListItemsNavWrapper {
+  position: relative;
+}
+.itemLinkNav_active ~ .indicator {
+  left: 0px;
+}
+.indicator {
+  position: absolute;
+  // top: -999999px;
+  left: -9999px;
+  top: var(--offset-el-indicator);
+  height: var(--height-nav-left-bar);
+  width: 4px;
+  background-color: #4880ff;
+  transition: all 0.8s;
+  border-radius: 0 6px 6px 0;
+}
