@@ -153,23 +153,7 @@ function ChooseStatusStory({ completed_status, setNewInfoStory }) {
     { value: "1", label: "Full" },
     { value: "2", label: "Drop" },
   ];
-  // return (
-  //   <select
-  //     className={styles.completeStatus}
-  //     defaultValue={completed_status}
-  //     onChange={(e) => {
-  //       setStoryUpdate("completed_status", e.target.value, setNewInfoStory);
-  //     }}
-  //   >
-  //     {dataSelect.map((name, idx) => {
-  //       return (
-  //         <option value={idx} key={idx}>
-  //           {name}
-  //         </option>
-  //       );
-  //     })}
-  //   </select>
-  // );
+
   return (
     <SelectionCustom
       className={styles.completeStatus}

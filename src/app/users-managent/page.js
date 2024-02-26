@@ -1,3 +1,5 @@
+import UsersPage from "@/components/pages/usersPage/UsersPage";
+
 export default function UserManagent() {
-  return <h1>999</h1>;
+  return <UsersPage />;
 }
