@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./UsersPageStyle.module.scss";
-import { useRouter } from "next/navigation";
 import SearchHeaderUser from "./searchHeaderUser/SearchHeaderUser";
 import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { getListUser } from "../../../../services/api/users";

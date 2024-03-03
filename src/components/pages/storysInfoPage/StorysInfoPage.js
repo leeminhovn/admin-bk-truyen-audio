@@ -48,6 +48,7 @@ export default function StoryInfoPage({ storyInfo }) {
 }
 
 const LeftSideTop = ({ storyInfo, setNewInfoStory, storyInfoOld }) => {
+  console.log(storyInfo);
   return (
     <div className={styles.wrapPage_top_leftSide}>
       <StoryPicture
