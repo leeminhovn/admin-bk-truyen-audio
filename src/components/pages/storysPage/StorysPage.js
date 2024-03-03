@@ -5,6 +5,7 @@ import { apiGetAllStorys } from "../../../../services/api/storys";
 import styles from "./StorysPageStyle.module.scss";
 import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
 import { useRouter } from "next/navigation";
+import { SelectedOptionsLimitSearch } from "../usersPage/searchHeaderUser/SearchHeaderUser";
 
 const columns = [
   { header: "Story", field: "story_name", width: "25%" },
@@ -48,6 +49,7 @@ export default function StorysPage() {
           setInfoGetData={setInfoGetData}
           setLoading={setLoading}
         />
+
         <NormalTable
           onClickRow={handleClickRow}
           isLoading={loading}

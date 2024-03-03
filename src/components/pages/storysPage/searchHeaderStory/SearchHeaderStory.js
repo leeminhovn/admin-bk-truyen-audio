@@ -4,6 +4,7 @@ import SearchBar, {
   ShowCaseInputSearch,
 } from "@/components/commons/inputs/searchBar/SearchBar";
 import { useState } from "react";
+import { SelectedOptionsLimitSearch } from "../../usersPage/searchHeaderUser/SearchHeaderUser";
 
 export default function SearchHeaderStory({ setInfoGetData }) {
   const [value, setValue] = useState("");
@@ -38,6 +39,7 @@ export default function SearchHeaderStory({ setInfoGetData }) {
         onChange={onChange}
         placeholder="Type story name"
       />
+      <SelectedOptionsLimitSearch setInfoGetData={setInfoGetData} />
     </CardWrapLayout>
   );
 }

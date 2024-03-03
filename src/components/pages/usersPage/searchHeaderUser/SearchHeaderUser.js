@@ -39,7 +39,7 @@ export default function SearchHeaderUser({ setInfoGetData, infoGetData }) {
         onChange={onChange}
         placeholder="Type user name"
       />
-      <SelectedOptions
+      <SelectedOptionsLimitSearch
         infoGetData={infoGetData}
         setInfoGetData={setInfoGetData}
       />
@@ -47,7 +47,7 @@ export default function SearchHeaderUser({ setInfoGetData, infoGetData }) {
   );
 }
 
-const SelectedOptions = ({ setInfoGetData }) => {
+export const SelectedOptionsLimitSearch = ({ setInfoGetData }) => {
   const dataSelect = [
     { value: "20", label: "20" },
     { value: "40", label: "40" },
