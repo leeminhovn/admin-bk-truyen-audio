@@ -6,5 +6,8 @@ const endpoints = {
   ADMIN_UPDATE_STORY_INFO: "storys/admin-story-info-update",
   ADMIN_GET_RERESHTOKEN: "admin/admin-get-refresh-token",
   ADMIN_GET_LIST_USER: "admin/get-list-users",
+  GET_ALL_GENRES:"storys/get-all-genres",
+  ADMIN_ADD_GENRE:"admin/add-genre",
+  ADMIN_DELETE_GENRE: "admin/delete-genre"
 };
 export default endpoints;

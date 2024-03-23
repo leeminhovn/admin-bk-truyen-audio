@@ -1,0 +1,12 @@
+.wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  &_card {
+    border-radius: 14px;
+    padding: 20px;
+  }
+}

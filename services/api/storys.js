@@ -41,3 +41,41 @@ export const updateStoryInfoAdmin = async (infoUpdate, token) => {
     console.log(err);
   }
 };
+export const getAllGenres = async () => {
+  const endpoint = endpoints.GET_ALL_GENRES;
+  try {
+    const result = await get(endpoint);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const addGenre = async (genreName, token) => {
+  const endpoint = endpoints.ADMIN_ADD_GENRE;
+  try {
+    const result = await post(
+      endpoint,
+      { genreName },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteGenre = async (genreId, token) => {
+  const endpoint = endpoints.ADMIN_DELETE_GENRE;
+  try {
+    const result = await post(
+      endpoint,
+      { genreId },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};

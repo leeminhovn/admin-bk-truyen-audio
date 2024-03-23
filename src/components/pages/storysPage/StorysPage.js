@@ -5,13 +5,14 @@ import { apiGetAllStorys } from "../../../../services/api/storys";
 import styles from "./StorysPageStyle.module.scss";
 import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
 import { useRouter } from "next/navigation";
-import { SelectedOptionsLimitSearch } from "../usersPage/searchHeaderUser/SearchHeaderUser";
+import StorysGeners from "./storysGeners/StorysGeners";
+import PopupLoading from "@/components/commons/popups/popupLoading/PopupLoading";
 
 const columns = [
   { header: "Story", field: "story_name", width: "25%" },
   { header: "Auhtor", field: "auhtor_name", width: "20%" },
-  { header: "Genre", field: "story_genre", width: "25%" },
-  { header: "Status", field: "completed_status", width: "5%" },
+  // { header: "Genre", field: "story_genre", width: "25%" },
+  { header: "Status", field: "completed_status", width: "15%" },
   { header: "Followers", field: "count_followers_story", width: "10%" },
 ];
 
@@ -57,6 +58,8 @@ export default function StorysPage() {
           data={data}
         />
       </div>
+      <h2 className="titlePageManagent">Storys genres</h2>
+      <StorysGeners />
     </>
   );
 }
