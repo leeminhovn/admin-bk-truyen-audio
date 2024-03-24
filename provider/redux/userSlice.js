@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiAdminLogin } from "../../services/api/auth";
+import { apiAdminLogin, apiAdminSignup } from "../../services/api/auth";
 import { setCookie } from "@/utils/features/localStorage";
 
 const userSlice = createSlice({
@@ -10,7 +10,24 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(userSignupAction.pending, (state, action) => {
+        state.status = "signup-loading";
+      })
+      .addCase(userSignupAction.rejected, (state, action) => {
+        state.status = "signup-faile";
+      })
+      .addCase(userSignupAction.fulfilled, (state, action) => {
+        state.userInfo = action.payload;
 
+        setCookie("adminToken", action.payload.accessToken, 30 * 60);
+        setCookie(
+          "adminRefreshToken",
+          action.payload.refreshToken,
+          24 * 60 * 60
+        );
+
+        state.status = "login-success";
+      })
       .addCase(userLoginAction.pending, (state, action) => {
         state.status = "login-loading";
       })
@@ -55,7 +72,32 @@ export const userLoginAction = createAsyncThunk(
     }
   }
 );
+export const userSignupAction = createAsyncThunk(
+  "admin/userSignupAction",
+  async (data) => {
+    const setErr = data.setError;
 
+    const responseSignup = await apiAdminSignup({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+    });
+    const isSignupSuccess = responseSignup.status === 200;
+    if (isSignupSuccess) {
+      return responseSignup.data;
+    } else {
+      const err = responseSignup.response.data.error;
+      if (err.toLocaleLowerCase().includes("password")) {
+        setErr({ password: err });
+      } else if (err.toLocaleLowerCase().includes("name")) {
+        setErr({ name: err });
+      } else {
+        setErr({ email: err });
+      }
+      return Promise.reject();
+    }
+  }
+);
 export const userAdminGetInfo = createAsyncThunk(
   "admin/userAdminGetInfo",
   async (data) => {}

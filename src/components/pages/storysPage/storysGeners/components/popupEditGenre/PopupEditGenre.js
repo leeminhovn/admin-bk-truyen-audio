@@ -62,7 +62,7 @@ export default function PopupEditGenre({
           onClick={handelSaveGener}
           data-color-btn={"purple"}
         >
-          Save
+          Continue
         </ButtonNormal>
       </div>
     </PopupNormal>

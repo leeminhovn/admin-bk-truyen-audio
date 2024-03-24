@@ -8,24 +8,33 @@ import {
   wrap_main_login_des,
   wrap_main_login_label,
   wrap_main_login_input,
+  bottom_signup,
   wrap_main_login_input_error,
   wrap_main_login_submitButton,
-} from "./LoginPageComponentStyle.module.scss";
-import styles from "./LoginPageComponentStyle.module.scss";
+} from "./signupPageComponentStyle.module.scss";
 import { useEffect, useState } from "react";
 import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
-import { userLoginAction } from "../../../../provider/redux/userSlice";
+import {
+  userLoginAction,
+  userSignupAction,
+} from "../../../../provider/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { validateEmail, validatePassword } from "@/utils/features/validate";
+import {
+  validateEmail,
+  validatePassword,
+  valideName,
+} from "@/utils/features/validate";
 import Link from "next/link";
 
-export default function LoginPageComponent() {
+export default function SignupPageComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  const [error, setError] = useState({ email: "", password: "" });
+  const [error, setError] = useState({ email: "", password: "", name: "" });
+
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter(); // Sử dụng useRouter hook
@@ -33,7 +42,7 @@ export default function LoginPageComponent() {
 
   const handleClickSubmit = async () => {
     const { error } = await dispatch(
-      userLoginAction({ email, password, setError })
+      userSignupAction({ email, password, setError, name: name.trim() })
     );
     !error && router.push("storys-managent");
   };
@@ -42,6 +51,8 @@ export default function LoginPageComponent() {
     if (
       email.length === 0 ||
       password.length === 0 ||
+      name.length === 0 ||
+      error?.name ||
       error?.email ||
       error?.password
     ) {
@@ -49,25 +60,43 @@ export default function LoginPageComponent() {
     } else {
       setIsDisabled(false);
     }
-  }, [email, password]);
+  }, [email, password, name]);
 
   const handleInputChange = (field, value) => {
-    const setErrorField = field === "email" ? validateEmail : validatePassword;
+    let setErrorField;
+    let setValue = () => {
+      setName(value);
+    };
+    if (field === "email") {
+      setErrorField = validateEmail;
+      setValue = setEmail;
+    } else if (field === "password") {
+      setErrorField = validatePassword;
+      setValue = setPassword;
+    } else {
+      setErrorField = valideName;
+    }
 
     setError((prevError) => ({ ...prevError, [field]: setErrorField(value) }));
-
-    if (field === "email") setEmail(value);
-    if (field === "password") setPassword(value);
+    setValue(value);
   };
   return (
     <div className={wrap}>
       <div className={wrap_main}>
         <CardWrapGeneral>
           <div className={wrap_main_login}>
-            <h2 className={wrap_main_login_title}>Login to Account</h2>
+            <h2 className={wrap_main_login_title}>Create account</h2>
             <p className={wrap_main_login_des}>
-              Please enter your email and password to continue
+              Please enter your name email and password to continue
             </p>
+            <InputField
+              id="name"
+              label="Your account name:"
+              type="text"
+              value={name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              error={error.name}
+            />
             <InputField
               id="email"
               label="Email address:"
@@ -91,12 +120,12 @@ export default function LoginPageComponent() {
                 is-loading={`${userStates.status === "login-loading"}`}
                 onClick={handleClickSubmit}
               >
-                Sign In
+                Signup
               </ButtonNormal>
             </div>
-            <div className={styles.bottom_signup}>
-              <span>Do not have an account? </span>
-              <Link href="/signup">Signup</Link>
+            <div className={bottom_signup}>
+              <span>Do you already have an account? </span>
+              <Link href="/login">Login</Link>
             </div>
           </div>
         </CardWrapGeneral>

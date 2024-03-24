@@ -4,6 +4,7 @@ export function middleware(request) {
   const adminToken = request.cookies.get("adminToken");
   const shouldHandleRedirect =
     !request.nextUrl.pathname.includes("/login") &&
+    !request.nextUrl.pathname.includes("/signup") &&
     !request.nextUrl.pathname.startsWith("/_next");
 
   if (!adminToken && shouldHandleRedirect) {

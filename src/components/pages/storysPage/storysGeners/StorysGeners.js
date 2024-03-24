@@ -126,15 +126,14 @@ function AddGenreComponent({ handleGetData }) {
         value={value}
         onChange={({ target: { value } }) => setValue(value)}
         className={style.wrapAddGenre_input}
-        isRequired
-        placeHolder="Add new genre"
+        placeholder="Add new genre"
       />
       <ButtonNormal
         onClick={handleClick}
-        is-loading={isLoading}
+        is-loading={isLoading + ""}
         disabled={value.length === 0}
         className={style.wrapAddGenre_addBtn}
-        purple={true}
+        purple={"true"}
       >
         Add
       </ButtonNormal>

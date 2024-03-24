@@ -15,7 +15,7 @@ export default function ItemGenre({ isSelected, title, setListSelected }) {
 
   return (
     <div onClick={handelClick} className={styles.wrap}>
-      <input type="checkbox" checked={isSelected}></input>
+      <input readOnly type="checkbox" checked={isSelected}></input>
       <label>{title}</label>
     </div>
   );

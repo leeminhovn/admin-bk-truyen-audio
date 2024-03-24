@@ -9,12 +9,12 @@ import { getCookie } from "@/utils/features/localStorage";
 export default function WrapperWeb({ children }) {
   const pathName = usePathname();
   const userStates = useSelector((state) => state.user);
-
+  const
   useEffect(() => {
     if (!userStates.userInfo.email && getCookie("adminToken")) {
     }
   }, []);
-  return pathName.includes("login") ? (
+  return pathName.includes("login") || pathName.includes("signup") ? (
     children
   ) : (
     <div className={wrapper}>

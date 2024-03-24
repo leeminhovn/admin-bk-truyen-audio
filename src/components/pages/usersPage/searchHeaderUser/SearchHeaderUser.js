@@ -1,3 +1,4 @@
+"use-client";
 import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
 import styles from "./SearchHeaderUserStyle.module.scss";
 import SearchBar, {

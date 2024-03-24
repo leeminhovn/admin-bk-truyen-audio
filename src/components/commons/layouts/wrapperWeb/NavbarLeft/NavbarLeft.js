@@ -50,7 +50,7 @@ const dataNavLeft1 = [
 
 export default function NavBarLeft() {
   const { userInfo } = useSelector((state) => state.user);
-
+  console.log(userInfo);
   return (
     <div className={wrapper}>
       <div className={wrapper_top}>
@@ -63,7 +63,7 @@ export default function NavBarLeft() {
         />
         <section className={wrapper_top_infoUser}>
           <b>{userInfo.name}</b>
-          <span>Admin</span>
+          <span>{userInfo.role}</span>
         </section>
       </div>
       <ListItemsNav data={dataNavLeft1} />
