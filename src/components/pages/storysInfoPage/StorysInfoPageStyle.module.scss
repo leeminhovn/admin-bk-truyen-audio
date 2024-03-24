@@ -57,3 +57,11 @@
     @include styleBtn;
   }
 }
+.bottomEdit {
+}
+.genreTextEdit {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}

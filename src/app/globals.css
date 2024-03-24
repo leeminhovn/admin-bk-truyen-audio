@@ -27,3 +27,6 @@ a {
 .titlePageManagent {
   font-size: 2.5rem;
 }
+.d-flex-grow-1 {
+  flex-grow: 1;
+}

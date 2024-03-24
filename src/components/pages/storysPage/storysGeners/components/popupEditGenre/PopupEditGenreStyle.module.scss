@@ -1,0 +1,17 @@
+.wrap {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  &_top {
+    height: 80%;
+    overflow-y: overlay;
+  }
+  &_bottom {
+    display: flex;
+    button {
+      min-height: 40px;
+      margin: 0 10px;
+    }
+  }
+}

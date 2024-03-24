@@ -1,7 +1,11 @@
 import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
 import { useEffect, useState } from "react";
 import style from "./StorysGenersStyle.module.scss";
-import { addGenre, getAllGenres } from "../../../../../services/api/storys";
+import {
+  addGenre,
+  deleteGenre,
+  getAllGenres,
+} from "../../../../../services/api/storys";
 import close_black from "@/../public/assets/images/icons/close_black.svg";
 import Image from "next/image";
 import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
@@ -29,6 +33,24 @@ export default function StorysGeners() {
     setIsShowDeletePopup(true);
     setCurrentItemDelete(idx);
   };
+  const handleCLosePopup = () => {
+    setCurrentItemDelete(null);
+    setIsShowDeletePopup(false);
+  };
+
+  const handleDeleteGenre = async () => {
+    handleCLosePopup();
+    setIsLoading(true);
+    try {
+      const deleteId = data[currentItemDelete]._id;
+      await deleteGenre(deleteId, getCookie("adminToken"));
+      setData(data.filter((genre) => genre._id !== deleteId));
+      setIsLoading(false);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   return (
     <>
       <CardWrapLayout>
@@ -54,16 +76,12 @@ export default function StorysGeners() {
           </p>
           <div className={style.wrapPopupDelete_space}></div>
           <div className={style.wrapPopupDelete_wrapBtn}>
-            <ButtonNormal
-              onClick={() => {
-                setCurrentItemDelete(null);
-                setIsShowDeletePopup(false);
-              }}
-              data-color-btn={"orange"}
-            >
+            <ButtonNormal onClick={handleCLosePopup} data-color-btn={"orange"}>
               Cancel
             </ButtonNormal>
-            <ButtonNormal data-color-btn={"green"}> Continue</ButtonNormal>
+            <ButtonNormal onClick={handleDeleteGenre} data-color-btn={"green"}>
+              Continue
+            </ButtonNormal>
           </div>
         </PopupNormal>
       )}
@@ -116,7 +134,7 @@ function AddGenreComponent({ handleGetData }) {
         is-loading={isLoading}
         disabled={value.length === 0}
         className={style.wrapAddGenre_addBtn}
-        purple
+        purple={true}
       >
         Add
       </ButtonNormal>

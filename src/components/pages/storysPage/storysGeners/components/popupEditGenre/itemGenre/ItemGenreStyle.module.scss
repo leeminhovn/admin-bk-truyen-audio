@@ -1,0 +1,17 @@
+.wrap {
+  width: fit-content;
+  padding: 5px 10px;
+  display: inline-block;
+  cursor: pointer;
+  margin: 3px;
+  display: inline-flex;
+  align-items: center;
+  border: solid 1px silver;
+  user-select: none;
+  label {
+    cursor: pointer;
+
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+}

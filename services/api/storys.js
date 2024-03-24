@@ -75,6 +75,7 @@ export const deleteGenre = async (genreId, token) => {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
+    return result;
   } catch (err) {
     console.log(err);
   }

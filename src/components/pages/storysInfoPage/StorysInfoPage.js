@@ -10,14 +10,14 @@ import _ from "lodash";
 import { updateStoryInfoAdmin } from "../../../../services/api/storys";
 import { getCookie } from "@/utils/features/localStorage";
 import SelectionCustom from "@/components/commons/selectionCustom/SelectionCustom";
+import PopupEditGenre from "../storysPage/storysGeners/components/popupEditGenre/PopupEditGenre";
 
 const dataShowInfoStory = [
   { label: "Auhtor", field: "auhtor_name" },
-  { label: "Genre", field: "story_genre" },
-
   { label: "Spirit stone", field: "linh_thach" },
   { label: "Followers", field: "count_followers_story" },
 ];
+
 export default function StoryInfoPage({ storyInfo }) {
   const [newInfoStory, setNewInfoStory] = useState({ ...storyInfo });
 
@@ -48,7 +48,8 @@ export default function StoryInfoPage({ storyInfo }) {
 }
 
 const LeftSideTop = ({ storyInfo, setNewInfoStory, storyInfoOld }) => {
-  console.log(storyInfo);
+  const [isShowEditGenre, setIsShowEditGenre] = useState(false);
+
   return (
     <div className={styles.wrapPage_top_leftSide}>
       <StoryPicture
@@ -67,13 +68,32 @@ const LeftSideTop = ({ storyInfo, setNewInfoStory, storyInfoOld }) => {
           />
         ))}
         <li>
-          <b>Complete</b>
+          <b>Genre: </b>
+          <span
+            onClick={() => setIsShowEditGenre(true)}
+            className={styles.genreTextEdit}
+          >
+            {storyInfo["story_genre"]}
+          </span>
+        </li>
+        <li>
+          <b>Complete:</b>
           <ChooseStatusStory
             completed_status={storyInfo.completed_status}
             setNewInfoStory={setNewInfoStory}
           />
         </li>
       </ul>
+      {isShowEditGenre && (
+        <PopupEditGenre
+          storyInfoOld={storyInfoOld}
+          genres={storyInfo["story_genre"]}
+          updateGenres={(newGenres) =>
+            setStoryUpdate("story_genre", newGenres, setNewInfoStory)
+          }
+          setIsShowEditGenre={setIsShowEditGenre}
+        />
+      )}
     </div>
   );
 };
