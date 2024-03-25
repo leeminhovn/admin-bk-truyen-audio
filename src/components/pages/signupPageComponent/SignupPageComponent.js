@@ -44,7 +44,7 @@ export default function SignupPageComponent() {
     const { error } = await dispatch(
       userSignupAction({ email, password, setError, name: name.trim() })
     );
-    !error && router.push("storys-managent");
+    !error && router.push("dashboard");
   };
 
   useEffect(() => {
