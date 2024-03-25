@@ -19,6 +19,11 @@ import user_feedback_black from "@/../public/assets/images/icons/user_feedback_b
 import user_feedback_white from "@/../public/assets/images/icons/user_feedback_white.svg";
 import ListItemsNav from "./itemNav/ListItemsNav";
 import { useSelector } from "react-redux";
+import authorBlack from "@/../public/assets/images/icons/author_black.svg";
+import authorWhite from "@/../public/assets/images/icons/author_white.svg";
+
+import dashboard_black from "@/../public/assets/images/icons/dashboard_black.svg";
+import dashboard_white from "@/../public/assets/images/icons/dashboard_white.svg";
 
 class Item {
   constructor(icon, title, link, activeIcon, role) {
@@ -30,10 +35,15 @@ class Item {
   }
 }
 const dataNavLeft1 = [
+  new Item(dashboard_black, "Dashboard ", "dashboard", dashboard_white, [
+    "Admin",
+    "Auhtor",
+  ]),
   new Item(book_black, "Storys ", "/storys-managent", book_white, [
     "Auhtor",
     "Admin",
   ]),
+  new Item(authorBlack, "Author ", "/author-managent", authorWhite, ["Admin"]),
   new Item(user_black, "Users ", "/users-managent", user_white, ["Admin"]),
   new Item(
     notice_black,

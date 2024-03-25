@@ -31,11 +31,14 @@
   &_rightSide {
   }
 }
+
 .wrapController {
   margin-top: 20px;
   padding: 10px 25px;
   & > button {
     height: 45px;
-    width: 180px;
+    margin: 0 20px 0px 0px;
+    width: fit-content;
+    min-width: 120px;
   }
 }

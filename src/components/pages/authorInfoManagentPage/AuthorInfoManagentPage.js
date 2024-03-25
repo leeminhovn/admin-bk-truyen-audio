@@ -1,9 +1,9 @@
 "use client";
 
 import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
-import styles from "./UserInfoPageStyle.module.scss";
+import styles from "./AuthorInfoManagentPageStyle.module.scss";
 import Image from "next/image";
-import default_icon_user from "@/../public/assets/images/icons/default_icon_user.svg";
+import default_icon_user from "@/../public/assets/images/icons/author_black.svg";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 import { useState } from "react";
 import PopupLoading from "@/components/commons/popups/popupLoading/PopupLoading";
@@ -11,10 +11,10 @@ import { updateUserBlockStatus } from "../../../../services/api/users";
 import { getCookie } from "@/utils/features/localStorage";
 import { useRouter } from "next/navigation";
 
-export default function UserInfoPage({ infoAccount }) {
+export default function AuthorInfoManagentPage({ infoAccount }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  console.log(infoAccount);
+
   const handleClickChangeBlockUser = async () => {
     setLoading(true);
     const statusBlock = infoAccount.isBlock;
@@ -45,9 +45,8 @@ export default function UserInfoPage({ infoAccount }) {
           </div>
           <div className={styles.wrap_leftSide_info}>
             <b>Email: {infoAccount.email}</b>
-            <b>Level: {infoAccount.level}</b>
-            <b>Linh Thạch: {infoAccount.spirit_stone}</b>
-            <b>Area: {infoAccount.area}</b>
+            <b>Money: {infoAccount.money}</b>
+
             <b>Khoá: {!!infoAccount.isBlock + ""}</b>
           </div>
         </div>

@@ -22,7 +22,6 @@ export default function ListItemsNav({ data }) {
   const { userInfo } = useSelector((state) => state.user);
 
   const pathName = usePathname();
-
   let count = 0;
   return (
     <div className={ListItemsNavWrapper}>

@@ -1,4 +1,4 @@
-import { get } from "./base";
+import { get, post } from "./base";
 import endpoints from "./endpoints";
 
 export const getListUser = async ({ page, limit, search }) => {
@@ -17,6 +17,23 @@ export const getListUser = async ({ page, limit, search }) => {
     return [];
   }
 };
+export const getListAuthor = async ({ page, limit, search }) => {
+  const endpoint = endpoints.ADMIN_GET_LIST_AUTHOR;
+
+  try {
+    const result = await get(endpoint, {
+      params: {
+        page,
+        limit,
+        search,
+      },
+    });
+    return result.data;
+  } catch (err) {
+    return [];
+  }
+};
+
 export const getUserInfoAccount = async (user_id) => {
   try {
     const endpoint = endpoints.GET_USER_INFO_ACCOUNT;

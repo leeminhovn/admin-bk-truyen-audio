@@ -1,3 +1,3 @@
 export default function FeedbackManagent() {
-  return <h1>feedback-managent</h1>;
+  return <h1>Feedback</h1>;
 }
