@@ -4,6 +4,7 @@ import styles from "./UsersPageStyle.module.scss";
 import SearchHeaderUser from "./searchHeaderUser/SearchHeaderUser";
 import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { getListUser } from "../../../../services/api/users";
+import { useRouter } from "next/navigation";
 
 const columns = [
   { header: "Name", field: "name", width: "15%" },
@@ -15,6 +16,8 @@ const columns = [
   // area
 ];
 export default function UsersPage() {
+  const router = useRouter();
+
   const [data, setData] = useState([]);
   const [infoGetData, setInfoGetData] = useState({
     page: 0,
@@ -37,7 +40,7 @@ export default function UsersPage() {
   }, [infoGetData]);
 
   const handleClickRow = (data) => {
-    // router.push(`/storys-managent/${data._id}`);
+    router.push(`/users-managent/${data._id}`);
   };
 
   return (

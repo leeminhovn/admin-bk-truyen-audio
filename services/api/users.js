@@ -17,3 +17,28 @@ export const getListUser = async ({ page, limit, search }) => {
     return [];
   }
 };
+export const getUserInfoAccount = async (user_id) => {
+  try {
+    const endpoint = endpoints.GET_USER_INFO_ACCOUNT;
+    const { data } = await get(endpoint, { params: { user_id } });
+    return data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
+export const updateUserBlockStatus = async (status, token, user_id) => {
+  try {
+    const endpoint = endpoints.ADMIN_ADD_GENREUSER_UPDATE_BLOCK_STATUS;
+    await post(
+      endpoint,
+      { block: status, user_id },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};

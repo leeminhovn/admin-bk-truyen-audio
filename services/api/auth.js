@@ -21,3 +21,19 @@ export const apiAdminSignup = async ({ email, password, name }) => {
     console.log(err);
   }
 };
+export const apiAdminLogout = async (user_id, token, refresh) => {
+  const endpoint = endpoints.ADMIN_LOGOUT_API;
+
+  try {
+    const res = await post(
+      endpoint,
+      { user_id, refreshToken: refresh },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};

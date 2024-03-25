@@ -46,3 +46,20 @@
   transition: all 0.8s;
   border-radius: 0 6px 6px 0;
 }
+.wrapPopupLogout {
+  display: flex;
+  height: 177px !important;
+  flex-direction: column;
+  & > p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  &_wrapButton {
+    display: flex;
+    button {
+      min-height: 45px;
+      margin: 10px;
+    }
+  }
+}

@@ -1,6 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiAdminLogin, apiAdminSignup } from "../../services/api/auth";
 import { setCookie } from "@/utils/features/localStorage";
+import { apiAdminGetInfoAccount } from "../../services/api/admin";
+
+const saveTokenAndStateInfoAdmin = (state, action) => {
+  state.userInfo = action.payload;
+  setCookie("adminToken", action.payload.accessToken, 30 * 60);
+  setCookie("adminRefreshToken", action.payload.refreshToken, 24 * 60 * 60);
+};
 
 const userSlice = createSlice({
   name: "user",
@@ -8,8 +15,15 @@ const userSlice = createSlice({
   reducers: {
     loginAction() {},
   },
+
   extraReducers: (builder) => {
     builder
+      .addCase(userAdminGetInfo.fulfilled, (state, action) => {
+        if (!action.payload) {
+          return state;
+        }
+        saveTokenAndStateInfoAdmin(state, action);
+      })
       .addCase(userSignupAction.pending, (state, action) => {
         state.status = "signup-loading";
       })
@@ -17,14 +31,7 @@ const userSlice = createSlice({
         state.status = "signup-faile";
       })
       .addCase(userSignupAction.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-
-        setCookie("adminToken", action.payload.accessToken, 30 * 60);
-        setCookie(
-          "adminRefreshToken",
-          action.payload.refreshToken,
-          24 * 60 * 60
-        );
+        saveTokenAndStateInfoAdmin(state, action);
 
         state.status = "login-success";
       })
@@ -35,14 +42,7 @@ const userSlice = createSlice({
         state.status = "login-faile";
       })
       .addCase(userLoginAction.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
-
-        setCookie("adminToken", action.payload.accessToken, 30 * 60);
-        setCookie(
-          "adminRefreshToken",
-          action.payload.refreshToken,
-          24 * 60 * 60
-        );
+        saveTokenAndStateInfoAdmin(state, action);
 
         state.status = "login-success";
       });
@@ -100,6 +100,16 @@ export const userSignupAction = createAsyncThunk(
 );
 export const userAdminGetInfo = createAsyncThunk(
   "admin/userAdminGetInfo",
-  async (data) => {}
+  async (data) => {
+    const { token } = data;
+
+    try {
+      const { data } = await apiAdminGetInfoAccount(token);
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 );
 export default userSlice.reducer;

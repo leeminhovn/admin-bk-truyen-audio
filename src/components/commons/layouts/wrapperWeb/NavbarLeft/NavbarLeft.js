@@ -21,28 +21,34 @@ import ListItemsNav from "./itemNav/ListItemsNav";
 import { useSelector } from "react-redux";
 
 class Item {
-  constructor(icon, title, link, activeIcon) {
+  constructor(icon, title, link, activeIcon, role) {
     this.icon = icon;
     this.title = title;
     this.link = link;
+    this.role = role;
     this.activeIcon = activeIcon;
   }
 }
 const dataNavLeft1 = [
-  new Item(book_black, "Storys ", "/storys-managent", book_white),
-  new Item(user_black, "Users ", "/users-managent", user_white),
+  new Item(book_black, "Storys ", "/storys-managent", book_white, [
+    "Auhtor",
+    "Admin",
+  ]),
+  new Item(user_black, "Users ", "/users-managent", user_white, ["Admin"]),
   new Item(
     notice_black,
     "Notification ",
     "/notifications-managent",
-    notice_white
+    notice_white,
+    ["Admin"]
   ),
-  new Item(mail_black, "Mail ", "/mail-managent", mail_white),
+  new Item(mail_black, "Mail ", "/mail-managent", mail_white, ["Auhtor"]),
   new Item(
     user_feedback_black,
     "Feedback ",
     "/feedback-managent",
-    user_feedback_white
+    user_feedback_white,
+    ["Admin"]
   ),
 
   // mail management
@@ -50,7 +56,6 @@ const dataNavLeft1 = [
 
 export default function NavBarLeft() {
   const { userInfo } = useSelector((state) => state.user);
-  console.log(userInfo);
   return (
     <div className={wrapper}>
       <div className={wrapper_top}>

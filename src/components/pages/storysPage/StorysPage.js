@@ -6,7 +6,7 @@ import styles from "./StorysPageStyle.module.scss";
 import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
 import { useRouter } from "next/navigation";
 import StorysGeners from "./storysGeners/StorysGeners";
-import PopupLoading from "@/components/commons/popups/popupLoading/PopupLoading";
+import { useSelector } from "react-redux";
 
 const columns = [
   { header: "Story", field: "story_name", width: "25%" },
@@ -17,8 +17,17 @@ const columns = [
 ];
 
 export default function StorysPage() {
-  const [data, setData] = useState([]);
+  const { userInfo } = useSelector((state) => state.user);
 
+  return (
+    <>
+      {userInfo.role === "Auhtor" && <ShowListStory />}
+      {userInfo.role === "Admin" && <StorysGeners />}
+    </>
+  );
+}
+const ShowListStory = () => {
+  const [data, setData] = useState([]);
   const [infoGetData, setInfoGetData] = useState({
     page: 0,
     limit: 12,
@@ -44,6 +53,7 @@ export default function StorysPage() {
   };
   return (
     <>
+      {" "}
       <h1 className="titlePageManagent">Storys</h1>
       <div className={styles.wrapTable}>
         <SearchHeaderStory
@@ -58,8 +68,6 @@ export default function StorysPage() {
           data={data}
         />
       </div>
-      <h2 className="titlePageManagent">Storys genres</h2>
-      <StorysGeners />
     </>
   );
-}
+};

@@ -53,6 +53,8 @@ export default function StorysGeners() {
 
   return (
     <>
+      <h2 className="titlePageManagent">Storys genres</h2>
+
       <CardWrapLayout>
         <div className={style.wrapListGenre}>
           {data.map((e, idx) => (
