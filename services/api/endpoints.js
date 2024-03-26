@@ -9,6 +9,7 @@ const endpoints = {
   ADMIN_UPDATE_STORY_INFO: "storys/admin-story-info-update",
   ADMIN_GET_RERESHTOKEN: "admin/admin-get-refresh-token",
   ADMIN_GET_STATISTICS: "statistics/statistics-admin",
+  ADMIN_GET_STATISTICS_AUTHOR: "statistics/statistics-author",
   ADMIN_GET_LIST_USER: "admin/get-list-users",
   ADMIN_GET_LIST_AUTHOR: "admin/get-list-authors",
   ADMIN_GET_ACCOUNT_ADMIN_INFO_BY_ID: "admin/get-admin-account-by-id",
