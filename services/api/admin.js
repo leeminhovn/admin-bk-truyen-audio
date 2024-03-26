@@ -27,3 +27,18 @@ export const apiAdminGetInfoAccountById = async (user_id, token) => {
     console.log(err);
   }
 };
+
+export const updateAuthorBlockStatus = async (status, token, user_id) => {
+  try {
+    const endpoint = endpoints.ADMIN_ADD_AUTHOR_UPDATE_BLOCK_STATUS;
+    await post(
+      endpoint,
+      { block: status, user_id },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};

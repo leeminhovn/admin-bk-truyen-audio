@@ -10,6 +10,7 @@ import PopupLoading from "@/components/commons/popups/popupLoading/PopupLoading"
 import { updateUserBlockStatus } from "../../../../services/api/users";
 import { getCookie } from "@/utils/features/localStorage";
 import { useRouter } from "next/navigation";
+import { updateAuthorBlockStatus } from "../../../../services/api/admin";
 
 export default function AuthorInfoManagentPage({ infoAccount }) {
   const [loading, setLoading] = useState(false);
@@ -19,7 +20,7 @@ export default function AuthorInfoManagentPage({ infoAccount }) {
     setLoading(true);
     const statusBlock = infoAccount.isBlock;
     try {
-      await updateUserBlockStatus(
+      await updateAuthorBlockStatus(
         !statusBlock,
         getCookie("adminToken"),
         infoAccount._id

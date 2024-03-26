@@ -6,6 +6,7 @@ const endpoints = {
   GET_ALL_STORYS: "storys/get-all-storys",
   GET_STORY_INFO: "storys/get-story-info",
   ADMIN_ADD_GENREUSER_UPDATE_BLOCK_STATUS: "admin/user-update-block-status",
+  ADMIN_ADD_AUTHOR_UPDATE_BLOCK_STATUS: "admin/author-update-block-status",
   ADMIN_UPDATE_STORY_INFO: "storys/admin-story-info-update",
   ADMIN_GET_RERESHTOKEN: "admin/admin-get-refresh-token",
   ADMIN_GET_STATISTICS: "statistics/statistics-admin",
