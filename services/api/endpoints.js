@@ -14,8 +14,8 @@ const endpoints = {
   ADMIN_GET_ACCOUNT_ADMIN_INFO_BY_ID: "admin/get-admin-account-by-id",
   GET_ALL_GENRES: "storys/get-all-genres",
   ADMIN_ADD_GENRE: "admin/add-genre",
-  ADMIN_DELETE_GENRE: "admin/delete-genre", 
-
+  ADMIN_DELETE_GENRE: "admin/delete-genre",
+  GET_STORY_OF_AUTHOR: "storys/get-storys-of-author",
   GET_USER_INFO_ACCOUNT: "user/user-info-account",
 };
 export default endpoints;

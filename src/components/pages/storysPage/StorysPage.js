@@ -1,7 +1,7 @@
 "use client";
 import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { useEffect, useState } from "react";
-import { apiGetAllStorys } from "../../../../services/api/storys";
+import { apiGetAllStorysOfAuthor } from "../../../../services/api/storys";
 import styles from "./StorysPageStyle.module.scss";
 import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
 import { useRouter } from "next/navigation";
@@ -35,17 +35,17 @@ const ShowListStory = () => {
   });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { userInfo } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const response = await apiGetAllStorys(infoGetData);
+      const response = await apiGetAllStorysOfAuthor(infoGetData, userInfo._id);
       setData(response.data);
       setLoading(false);
     };
 
     fetchData();
-
     return () => {};
   }, [infoGetData]);
   const handleClickRow = (data) => {
