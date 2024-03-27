@@ -101,3 +101,13 @@ export const deleteGenre = async (genreId, token) => {
     console.log(err);
   }
 };
+export const getChapterById = async (chapter_id) => {
+  const endpoint = endpoints.GET_CHAPTER_BY_ID;
+
+  try {
+    const { data } = await get(endpoint, { params: { chapter_id } });
+    return data;
+  } catch (err) {
+    return null;
+  }
+};

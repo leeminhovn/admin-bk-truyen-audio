@@ -1,0 +1,41 @@
+.wrapCard {
+  padding: 20px 15px;
+  margin-bottom: 20px;
+  &_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &_button {
+      height: 45px !important;
+      width: 120px !important;
+    }
+    & > p {
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+  }
+  &_text {
+    display: flex;
+    padding: 10px 2px;
+    height: 450px;
+    &_textAreaWrite {
+      width: 50%;
+      max-height: 100%;
+      min-height: 100%;
+    }
+    &_space {
+      height: 100%;
+      background-color: #4880ff;
+      width: 10px;
+      border-radius: 13px;
+    }
+    &_preview {
+      width: 50%;
+      margin: 0;
+      padding-left: 5px;
+      height: 100%;
+      overflow-y: overlay;
+      display: inline-block;
+    }
+  }
+}

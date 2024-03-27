@@ -8,7 +8,7 @@
   justify-content: space-between;
   &_btn {
     min-height: 45px;
-    width: 120px;
+    width: 120px !important;
   }
   &_wrap {
   }
@@ -17,7 +17,7 @@
     font-size: 1.7rem;
   }
   &_input {
-    width: 130px;
+    width: 130px !important;
   }
   .sperted {
     margin: 0 10px;
@@ -27,7 +27,7 @@
 .controllChapterBottom {
   margin-top: 20px;
   &_btnAdd {
-    width: 160px;
+    width: 160px !important;
     height: 45px;
   }
 }

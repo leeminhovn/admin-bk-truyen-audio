@@ -1,9 +1,12 @@
+"use client";
+
 import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
 import styles from "./ChapterManagnentStyle.module.scss";
 import { useRef, useState } from "react";
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
+import { useRouter } from "next/navigation";
 
 const columns = [
   { header: "Index", field: "index", width: "2%", gravity: "center" },
@@ -13,8 +16,11 @@ const columns = [
 ];
 export default function ChapterManagnent({ chapters }) {
   const [pageCurrent, setPageCurrent] = useState(0);
+  const router = useRouter();
   const maxPage = useRef(Math.ceil(chapters.length / 10));
-  const handleClickRow = () => {};
+  const handleClickRow = (data) => {
+    router.push(window.location.href + "/" + data._id);
+  };
   return (
     <>
       <h1 className="titlePageManagent">Chapters</h1>
