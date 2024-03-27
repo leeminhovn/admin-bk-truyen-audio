@@ -9,6 +9,7 @@
         overflow: hidden;
         width: 250px;
         height: 300px;
+        cursor: pointer;
       }
     }
     &_leftSide {
@@ -63,5 +64,14 @@
   cursor: pointer;
   &:hover {
     text-decoration: underline;
+  }
+}
+.wrapPopupChangeImg {
+  height: 230px;
+  &_input {
+    height: 31px;
+    padding: 17px 15px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 }

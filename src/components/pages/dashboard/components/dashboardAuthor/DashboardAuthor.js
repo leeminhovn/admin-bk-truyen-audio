@@ -6,6 +6,7 @@ import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { apiStaticticsAuhtor } from "../../../../../../services/api/statistic";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 const columnsTopStoryWeek = [
   { header: "Story", field: "story_name", width: "25%" },
   { header: "Auhtor", field: "auhtor_name", width: "20%" },
@@ -39,7 +40,6 @@ export default function DashboardAuthor() {
         total_storied_have_chance;
     });
   }, [userInfo]);
-  console.log("zoo");
   return (
     <>
       {showLoading && <PopupLoading />}

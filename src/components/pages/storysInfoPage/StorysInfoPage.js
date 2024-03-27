@@ -11,6 +11,10 @@ import { updateStoryInfoAdmin } from "../../../../services/api/storys";
 import { getCookie } from "@/utils/features/localStorage";
 import SelectionCustom from "@/components/commons/selectionCustom/SelectionCustom";
 import PopupEditGenre from "../storysPage/storysGeners/components/popupEditGenre/PopupEditGenre";
+import PopupNormal from "@/components/commons/popups/popupNormal/PopupNormal";
+import PopupNormalTwoOption from "@/components/commons/popups/popupNormalTwoOption/PopupNormalTwoOption";
+import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
+import ChapterManagnent from "./components/chapterManagnent/ChapterManagnent";
 
 const dataShowInfoStory = [
   { label: "Auhtor", field: "auhtor_name" },
@@ -20,18 +24,18 @@ const dataShowInfoStory = [
 
 export default function StoryInfoPage({ storyInfo }) {
   const [newInfoStory, setNewInfoStory] = useState({ ...storyInfo });
-
   if (storyInfo === undefined) {
     return <h1 className="titlePageManagent">Not found story</h1>;
   }
 
   return (
     <>
-      <h1 className="titlePageManagent">Storys info</h1>
+      <h1 className="titlePageManagent">Story info</h1>
       <CardWrapLayout>
         <div className={styles.wrapPage}>
           <div className={styles.wrapPage_top}>
             <LeftSideTop
+              newInfoStory={newInfoStory}
               storyInfo={newInfoStory.story}
               storyInfoOld={storyInfo.story}
               setNewInfoStory={setNewInfoStory}
@@ -43,17 +47,24 @@ export default function StoryInfoPage({ storyInfo }) {
           </div>
         </div>
       </CardWrapLayout>
+      <ChapterManagnent chapters={storyInfo.chapters} />
     </>
   );
 }
 
-const LeftSideTop = ({ storyInfo, setNewInfoStory, storyInfoOld }) => {
+const LeftSideTop = ({
+  storyInfo,
+  newInfoStory,
+  setNewInfoStory,
+  storyInfoOld,
+}) => {
   const [isShowEditGenre, setIsShowEditGenre] = useState(false);
 
   return (
     <div className={styles.wrapPage_top_leftSide}>
       <StoryPicture
-        picture={storyInfo.story_picture}
+        picture={storyInfo.story_picture || ""}
+        newInfoStory={newInfoStory.story}
         setNewInfoStory={setNewInfoStory}
       />
       <ControllerUpdate newInfoStory={storyInfo} storyInfoOld={storyInfoOld} />
@@ -98,21 +109,61 @@ const LeftSideTop = ({ storyInfo, setNewInfoStory, storyInfoOld }) => {
   );
 };
 
-const StoryPicture = ({ picture }) => {
+const StoryPicture = ({ picture, setNewInfoStory, newInfoStory }) => {
+  const [showPopupChangeImage, setShowPopupChangeImage] = useState(false);
+  const [valueImage, setValueImage] = useState(newInfoStory.story_picture);
+  const handleChangeImage = () => {
+    setShowPopupChangeImage(false);
+
+    setStoryUpdate("story_picture", valueImage, setNewInfoStory);
+  };
+  const handleCancelPopup = () => {
+    setValueImage(newInfoStory.story_picture);
+    setShowPopupChangeImage(false);
+  };
   return (
-    <div className={styles.wrapPage_top_pictureStory}>
-      <Image
-        width={300}
-        height={400}
-        src={
-          picture ||
-          "https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-1/406534825_341562725186517_794769701051680443_n.jpg?stp=cp6_dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=5740b7&_nc_eui2=AeHnXnK3rDKM3Rw9oES_Rir0X7LGC5et3c1fssYLl63dzWqaL72p3updkPkfW3pHAGx0NT304YodW2w3DRS90d1b&_nc_ohc=DkvQpYI8b_UAX_BWqUM&_nc_ht=scontent.fhan14-3.fna&oh=00_AfDm5DcWHBdV_waxesafYcaGmbZMiRxf2NdGQsuZE3A7Lw&oe=65DB8CE3"
-        }
-        alt="image"
-      />
-    </div>
+    <>
+      <div
+        onClick={() => setShowPopupChangeImage(true)}
+        className={styles.wrapPage_top_pictureStory}
+      >
+        <Image
+          width={300}
+          height={400}
+          src={
+            picture ||
+            "https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-1/406534825_341562725186517_794769701051680443_n.jpg?stp=cp6_dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=5740b7&_nc_eui2=AeHnXnK3rDKM3Rw9oES_Rir0X7LGC5et3c1fssYLl63dzWqaL72p3updkPkfW3pHAGx0NT304YodW2w3DRS90d1b&_nc_ohc=DkvQpYI8b_UAX_BWqUM&_nc_ht=scontent.fhan14-3.fna&oh=00_AfDm5DcWHBdV_waxesafYcaGmbZMiRxf2NdGQsuZE3A7Lw&oe=65DB8CE3"
+          }
+          alt="image"
+        />
+      </div>
+      {showPopupChangeImage && (
+        <PopupNormalTwoOption
+          btn1Cus={{
+            color: "orange",
+            text: "Cancel",
+            onClick: handleCancelPopup,
+          }}
+          btn2Cus={{
+            color: "green",
+            text: "Continue",
+            onClick: handleChangeImage,
+          }}
+          classMore={styles.wrapPopupChangeImg}
+        >
+          <p>Write in the link the image you want to replace</p>
+          <NormalInput
+            value={valueImage}
+            onChange={({ target }) => setValueImage(target.value)}
+            className={styles.wrapPopupChangeImg_input}
+            placeholder="Type your image link"
+          ></NormalInput>
+        </PopupNormalTwoOption>
+      )}
+    </>
   );
 };
+
 const RightSideTop = ({ storyInfo, setNewInfoStory }) => {
   return (
     <div className={styles.wrapPage_top_rightSide}>

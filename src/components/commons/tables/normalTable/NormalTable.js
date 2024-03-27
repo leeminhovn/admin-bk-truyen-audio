@@ -22,8 +22,14 @@ const TableBody = ({ columns, data, onClickRow = () => {} }) => (
     {data.map((row, rowIndex) => (
       <tr onClick={() => onClickRow(row)} key={rowIndex}>
         {columns.map((column, columnIndex) => (
-          <td className={styles.td} key={columnIndex}>
-            {row[column.field]}
+          <td
+            style={{ textAlign: column["gravity"] || "auto" }}
+            className={styles.td}
+            key={columnIndex}
+          >
+            {column.convertValue
+              ? column.convertValue(row[column.field])
+              : row[column.field]}
           </td>
         ))}
       </tr>

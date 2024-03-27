@@ -45,7 +45,7 @@ export default function AuthorManagentPage() {
 
   return (
     <>
-      <h1 className="titlePageManagent">Storys</h1>
+      <h1 className="titlePageManagent">Author managent</h1>
       <div className={styles.wrapTable}>
         <AuthorHeaderUser
           setInfoGetData={setInfoGetData}

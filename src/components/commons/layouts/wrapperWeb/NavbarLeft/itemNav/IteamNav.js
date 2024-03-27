@@ -27,7 +27,7 @@ export default function IteamNav({
   return (
     <Link
       className={`${itemLinkNav} ${isActive ? itemLinkNav_active : ""}`}
-      href={link}
+      href={process.env.NEXT_PUBLIC_WEB_URL + link}
     >
       <div className={`${wrapper} ${isActive ? wrapper_active : ""}`}>
         <section>

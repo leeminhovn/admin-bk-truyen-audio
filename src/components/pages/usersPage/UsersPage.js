@@ -45,7 +45,7 @@ export default function UsersPage() {
 
   return (
     <>
-      <h1 className="titlePageManagent">Storys</h1>
+      <h1 className="titlePageManagent">Users managent</h1>
       <div className={styles.wrapTable}>
         <SearchHeaderUser
           setInfoGetData={setInfoGetData}

@@ -7,7 +7,6 @@ import default_icon_user from "@/../public/assets/images/icons/author_black.svg"
 import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 import { useState } from "react";
 import PopupLoading from "@/components/commons/popups/popupLoading/PopupLoading";
-import { updateUserBlockStatus } from "../../../../services/api/users";
 import { getCookie } from "@/utils/features/localStorage";
 import { useRouter } from "next/navigation";
 import { updateAuthorBlockStatus } from "../../../../services/api/admin";
@@ -37,7 +36,7 @@ export default function AuthorInfoManagentPage({ infoAccount }) {
   return (
     <>
       {loading && <PopupLoading />}
-      <h1 className="titlePageManagent">User info</h1>
+      <h1 className="titlePageManagent">Author info</h1>
       <CardWrapLayout className={styles.wrap}>
         <div className={styles.wrap_leftSide}>
           <div className={styles.wrap_leftSide_avatar}>

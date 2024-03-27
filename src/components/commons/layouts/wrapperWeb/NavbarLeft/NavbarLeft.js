@@ -40,24 +40,24 @@ const dataNavLeft1 = [
     "Admin",
     "Auhtor",
   ]),
-  new Item(book_black, "Storys ", "/storys-managent", book_white, [
+  new Item(book_black, "Stories ", "storys-managent", book_white, [
     "Auhtor",
     "Admin",
   ]),
-  new Item(authorBlack, "Author ", "/author-managent", authorWhite, ["Admin"]),
-  new Item(user_black, "Users ", "/users-managent", user_white, ["Admin"]),
+  new Item(authorBlack, "Author ", "author-managent", authorWhite, ["Admin"]),
+  new Item(user_black, "Users ", "users-managent", user_white, ["Admin"]),
   new Item(
     notice_black,
     "Notification ",
-    "/notifications-managent",
+    "notifications-managent",
     notice_white,
     ["Admin"]
   ),
-  new Item(mail_black, "Mail ", "/mail-managent", mail_white, ["Auhtor"]),
+  new Item(mail_black, "Mail ", "mail-managent", mail_white, ["Auhtor"]),
   new Item(
     user_feedback_black,
     "Feedback ",
-    "/feedback-managent",
+    "feedback-managent",
     user_feedback_white,
     ["Admin"]
   ),
