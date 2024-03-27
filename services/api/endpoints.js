@@ -20,5 +20,8 @@ const endpoints = {
   GET_STORY_OF_AUTHOR: "storys/get-storys-of-author",
   GET_USER_INFO_ACCOUNT: "user/user-info-account",
   GET_CHAPTER_BY_ID: "storys/get-chapter-by-id",
+  DELETE_CHAPTER_BY_ID: "admin/delete-chapter-by-id",
+  ADD_CHAPTER: "admin/add-chapter",
+  EDIT_CHAPTER: "admin/edit-chapter",
 };
 export default endpoints;

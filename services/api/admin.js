@@ -42,3 +42,50 @@ export const updateAuthorBlockStatus = async (status, token, user_id) => {
     console.log(err);
   }
 };
+
+export const deleteChapterById = async (chapter_id, token) => {
+  try {
+    const endpoint = endpoints.DELETE_CHAPTER_BY_ID;
+    const { data } = await get(endpoint, {
+      params: { chapter_id },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+export const addChapter = async (newChapter, token) => {
+  try {
+    alert("zoo");
+    const endpoint = endpoints.ADD_CHAPTER;
+    const { data } = await post(
+      endpoint,
+      { body: { newChapter } },
+
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
+export const editChapter = async (editChapter, token) => {
+  try {
+    const endpoint = endpoints.EDIT_CHAPTER;
+    const { data } = await post(
+      endpoint,
+      { params: { editChapter } },
+
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return data;
+  } catch (err) {
+    return null;
+  }
+};

@@ -21,6 +21,9 @@ export default function ChapterManagnent({ chapters }) {
   const handleClickRow = (data) => {
     router.push(window.location.href + "/" + data._id);
   };
+  const handleToNewChapter = () => {
+    router.push(window.location.href + "/" + "chapter-new");
+  };
   return (
     <>
       <h1 className="titlePageManagent">Chapters</h1>
@@ -73,6 +76,7 @@ export default function ChapterManagnent({ chapters }) {
         <div className={styles.controllChapterBottom}>
           <ButtonNormal
             data-color-btn={"orange"}
+            onClick={handleToNewChapter}
             className={styles.controllChapterBottom_btnAdd}
           >
             Add new chapter
