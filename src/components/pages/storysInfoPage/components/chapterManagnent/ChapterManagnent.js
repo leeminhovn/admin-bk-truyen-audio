@@ -52,7 +52,9 @@ export default function ChapterManagnent({ chapters }) {
             <ButtonNormal
               onClick={() => {
                 setPageCurrent(
-                  document.getElementById("input-move-to-page").value || 0
+                  Number(
+                    document.getElementById("input-move-to-page").value || 0
+                  )
                 );
               }}
               className={styles.controllChapterTop_btn}
@@ -61,6 +63,14 @@ export default function ChapterManagnent({ chapters }) {
               Move to Page
             </ButtonNormal>
           </div>
+        </div>
+        <div className={styles.controllChapterBottom}>
+          <ButtonNormal
+            data-color-btn={"orange"}
+            className={styles.controllChapterBottom_btnAdd}
+          >
+            Add new chapter
+          </ButtonNormal>
         </div>
       </CardWrapLayout>
       <NormalTable

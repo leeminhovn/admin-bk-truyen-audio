@@ -1,10 +1,11 @@
 .wrap {
   padding: 20px 15px;
+  margin-bottom: 20px;
 }
 .controllChapterTop {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   &_btn {
     min-height: 45px;
     width: 120px;
@@ -21,5 +22,12 @@
   .sperted {
     margin: 0 10px;
     font-size: 2rem;
+  }
+}
+.controllChapterBottom {
+  margin-top: 20px;
+  &_btnAdd {
+    width: 160px;
+    height: 45px;
   }
 }

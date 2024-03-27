@@ -35,7 +35,7 @@ export default function LoginPageComponent() {
     const { error } = await dispatch(
       userLoginAction({ email, password, setError })
     );
-    !error && router.push("dashboard");
+    !error && router.replace("/dashboard");
   };
 
   useEffect(() => {
