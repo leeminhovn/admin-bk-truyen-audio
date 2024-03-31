@@ -142,6 +142,8 @@ export default function PageNewStoryComponent() {
               chapters: [],
               auhtor_name: userInfo.name,
             }}
+            author_id={userInfo._id}
+            author_message={message}
             setShowLoading={setShowLoading}
             handleChangePopupShow={handleChangePopupShow}
           />
@@ -205,6 +207,8 @@ const PopupConfirmSend = ({
   setShowLoading,
   handleChangePopupShow,
   storySend,
+  author_id,
+  author_message,
 }) => {
   const router = useRouter();
   const closePopup = () => {
@@ -216,7 +220,13 @@ const PopupConfirmSend = ({
     setTimeout(() => {
       router.push(process.env.NEXT_PUBLIC_WEB_URL + "mail-managent");
     }, 200);
-    await addStoryByAuthor(storySend, getCookie("adminToken"));
+
+    await addStoryByAuthor(
+      storySend,
+      author_id,
+      author_message,
+      getCookie("adminToken")
+    );
   };
   return (
     <PopupNormalTwoOption

@@ -30,3 +30,12 @@ a {
 .d-flex-grow-1 {
   flex-grow: 1;
 }
+.correctColorText {
+  color: #23ac38;
+}
+.incorrectColorText {
+  color: #eb5757;
+}
+.orangeColorText {
+  color: #f8ad3e;
+}

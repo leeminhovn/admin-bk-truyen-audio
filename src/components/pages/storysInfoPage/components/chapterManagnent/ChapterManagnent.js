@@ -18,7 +18,11 @@ const limitChapter = 20;
 export default function ChapterManagnent({ chapters }) {
   const [pageCurrent, setPageCurrent] = useState(0);
   const router = useRouter();
-  const maxPage = useRef(Math.ceil(chapters.length / limitChapter));
+  const maxPage = useRef(
+    chapters.length - limitChapter > 0
+      ? Math.floor(chapters.length / limitChapter)
+      : 0
+  );
   const handleClickRow = (data) => {
     router.push(window.location.href + "/" + data._id);
   };
@@ -26,7 +30,7 @@ export default function ChapterManagnent({ chapters }) {
     router.push(window.location.href + "/" + "chapter-new");
   };
   return (
-    <>
+    <div className={styles.outer}>
       <h1 className="titlePageManagent">Chapters</h1>
       <CardWrapLayout className={styles.wrap}>
         <div className={styles.controllChapterTop}>
@@ -85,11 +89,12 @@ export default function ChapterManagnent({ chapters }) {
         </div>
       </CardWrapLayout>
       <NormalTable
+        clasd
         onClickRow={handleClickRow}
         isLoading={false}
         columns={columns}
         data={[...chapters].splice(pageCurrent * limitChapter, limitChapter)}
       />
-    </>
+    </div>
   );
 }

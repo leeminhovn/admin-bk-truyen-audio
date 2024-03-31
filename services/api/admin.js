@@ -89,14 +89,40 @@ export const editChapter = async (editChapter, token) => {
   }
 };
 
-export const addStoryByAuthor = async (story, token) => {
+export const addStoryByAuthor = async (
+  story,
+  author_id,
+  author_message,
+  token
+) => {
+  const endpoint = endpoints.AUTHOR_ADD_STORY_NEED_APPROVED;
   try {
+    await post(
+      endpoint,
+      { story, author_id, author_message },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
   } catch (err) {
     console.log(err);
   }
 };
-export const getStoryNeedApproved = async (token) => {
+export const getStoryNeedApproved = async (
+  page,
+  limit,
+  token,
+  author_id = null
+) => {
+  const endpoint = endpoints.ADMIN_GET_STORIES_NEED_APPROVED;
   try {
+    const dataSend = { page, limit };
+    author_id !== null && (dataSend.author_id = author_id);
+    const { data } = await get(endpoint, {
+      params: dataSend,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
   } catch (err) {
     console.log(err);
   }
