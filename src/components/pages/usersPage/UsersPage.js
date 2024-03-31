@@ -7,11 +7,11 @@ import { getListUser } from "../../../../services/api/users";
 import { useRouter } from "next/navigation";
 
 const columns = [
-  { header: "Name", field: "name", width: "15%" },
-  { header: "Email", field: "email", width: "25%" },
-  { header: "Spirit Stone", field: "spirit_stone", width: "15%" },
-  { header: "Level", field: "level", width: "15%" },
-  { header: "Area", field: "area", width: "15%" },
+  { header: "Name", field: ["name"], width: "15%" },
+  { header: "Email", field: ["email"], width: "25%" },
+  { header: "Spirit Stone", field: ["spirit_stone"], width: "15%" },
+  { header: "Level", field: ["level"], width: "15%" },
+  { header: "Area", field: ["area"], width: "15%" },
 
   // area
 ];

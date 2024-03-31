@@ -9,8 +9,8 @@ import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { useRouter } from "next/navigation";
 
 const columns = [
-  { header: "Index", field: "index", width: "2%", gravity: "center" },
-  { header: "Name", field: "chapter_name", width: "98%" },
+  { header: "Index", field: ["index"], width: "2%", gravity: "center" },
+  { header: "Name", field: ["chapter_name"], width: "98%" },
 
   // area
 ];

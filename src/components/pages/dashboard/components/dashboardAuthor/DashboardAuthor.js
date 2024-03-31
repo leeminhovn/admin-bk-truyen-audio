@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const columnsTopStoryWeek = [
-  { header: "Story", field: "story_name", width: "25%" },
-  { header: "Auhtor", field: "auhtor_name", width: "20%" },
-  // { header: "Genre", field: "story_genre", width: "25%" },
-  { header: "Followers", field: "count_followers_story", width: "15%" },
-  { header: "Linh thạch", field: "linh_thach", width: "15%" },
+  { header: "Story", field: ["story_name"], width: "25%" },
+  { header: "Auhtor", field: ["auhtor_name"], width: "20%" },
+  // { header: "Genre", field: ["story_genre"], width: "25%" },
+  { header: "Followers", field: ["count_followers_story"], width: "15%" },
+  { header: "Linh thạch", field: ["linh_thach"], width: "15%" },
 ];
 
 export default function DashboardAuthor() {

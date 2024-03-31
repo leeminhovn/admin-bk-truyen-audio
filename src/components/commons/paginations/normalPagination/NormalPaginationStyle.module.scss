@@ -1,0 +1,36 @@
+.wrap {
+  margin: 20px 0px;
+  padding: 20px 25px;
+  text-align: center;
+  &_main {
+    width: 100%;
+    max-width: 500px;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    button {
+      width: 120px !important;
+      min-height: 45px !important;
+    }
+    &_page {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+  &_gotoPage {
+    display: inline-flex;
+    width: 300px;
+    margin-left: 20px;
+    input {
+      flex-grow: 1;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    button {
+      min-height: 45px !important;
+      width: 120px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+}

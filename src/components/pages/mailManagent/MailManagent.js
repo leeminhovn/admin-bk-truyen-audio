@@ -4,12 +4,28 @@ import { useEffect, useState } from "react";
 import { getStoryNeedApproved } from "../../../../services/api/admin";
 import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { getCookie } from "@/utils/features/localStorage";
+import { formatDateFromIsoDateToNormalVnDate } from "@/utils/helpers";
+import NormalPagination from "@/components/commons/paginations/normalPagination/NormalPagination";
 const columns = [
-  { header: "Author id", field: "author_id", width: "15%" },
-  { header: "Message", field: "author_message", width: "25%" },
+  {
+    header: "Name",
+    field: ["story", "story_name"],
+    width: "25%",
+    convertValue: (data) => {
+      console.log(data);
+      return data;
+    },
+  },
+  {
+    header: "Moderation feedback",
+    field: ["moderator_feedback"],
+    width: "35%",
+  },
+
+  { header: "Message", field: ["author_message"], width: "20%" },
   {
     header: "Status",
-    field: "status",
+    field: ["status"],
     width: "5%",
     gravity: "center",
     convertValue: (data) => {
@@ -23,7 +39,13 @@ const columns = [
       }
     },
   },
-  { header: "Create at", field: "created_at", width: "15%" },
+  {
+    header: "Create at",
+    field: ["created_at"],
+    width: "15%",
+    convertValue: formatDateFromIsoDateToNormalVnDate,
+    gravity: "center",
+  },
 
   // area
 ];
@@ -56,11 +78,11 @@ export default function MailManagent() {
     };
     handleCallGetData();
   }, []);
-  console.log(data);
   const handleClickRow = () => {};
   return (
     <>
       <h1 className={"titlePageManagent"}>Mail</h1>
+      <NormalPagination />
       <NormalTable
         onClickRow={handleClickRow}
         isLoading={isLoading}

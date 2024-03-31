@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 import { getListAuthor } from "../../../../services/api/users";
 
 const columns = [
-  { header: "Name", field: "name", width: "15%" },
-  { header: "Email", field: "email", width: "25%" },
-  { header: "Money", field: "money", width: "15%" },
+  { header: "Name", field: ["name"], width: "15%" },
+  { header: "Email", field: ["email"], width: "25%" },
+  { header: "Money", field: ["money"], width: "15%" },
 
   // area
 ];

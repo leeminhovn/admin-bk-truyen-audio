@@ -12,19 +12,19 @@ import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal
 const ConvertStatus = ["Update", "Complete", "Drop"];
 
 const columns = [
-  { header: "Story", field: "story_name", width: "25%" },
-  { header: "Auhtor", field: "auhtor_name", width: "20%" },
-  // { header: "Genre", field: "story_genre", width: "25%" },
+  { header: "Story", field: ["story_name"], width: "25%" },
+  { header: "Auhtor", field: ["auhtor_name"], width: "20%" },
+  // { header: "Genre", field: ["story_genre"], width: "25%" },
   {
     header: "Status",
-    field: "completed_status",
+    field: ["completed_status"],
     width: "15%",
     convertValue: (value) => {
       return ConvertStatus[value];
     },
     gravity: "center",
   },
-  { header: "Followers", field: "count_followers_story", width: "10%" },
+  { header: "Followers", field: ["count_followers_story"], width: "10%" },
 ];
 
 export default function StorysPage() {

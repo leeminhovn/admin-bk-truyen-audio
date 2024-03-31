@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./NormalTableStyle.module.scss";
 import loadingIcon from "@/../public/assets/animations/loading_button_image.svg";
+import { getDataInManyObjects } from "@/utils/helpers";
 
 // Component cho Header của Table
 const TableHeader = ({ columns }) => (
@@ -28,8 +29,8 @@ const TableBody = ({ columns, data, onClickRow = () => {} }) => (
             key={columnIndex}
           >
             {column.convertValue
-              ? column.convertValue(row[column.field])
-              : row[column.field]}
+              ? column.convertValue(getDataInManyObjects(row, column.field))
+              : getDataInManyObjects(row, column.field)}
           </td>
         ))}
       </tr>
