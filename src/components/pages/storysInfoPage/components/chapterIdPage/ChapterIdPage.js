@@ -23,7 +23,11 @@ const initialPopupStatus = {
   isEditChapterName: false,
 };
 
-export default function ChapterIdPage({ chapter, isNewChapter = false }) {
+export default function ChapterIdPage({
+  chapter,
+  isNewChapter = false,
+  story_id,
+}) {
   const [showPopup, setShowPopup] = useState({
     ...initialPopupStatus,
   });
@@ -88,9 +92,12 @@ export default function ChapterIdPage({ chapter, isNewChapter = false }) {
       {
         chapter_name: chapter.chapter_name,
         content_chapter: contentChapter,
+        story_id,
       },
       getCookie("adminToken")
     );
+    router.back();
+
     changeLoading();
   };
   return (

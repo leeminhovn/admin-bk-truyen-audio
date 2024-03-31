@@ -11,7 +11,6 @@ import { updateStoryInfoAdmin } from "../../../../services/api/storys";
 import { getCookie } from "@/utils/features/localStorage";
 import SelectionCustom from "@/components/commons/selectionCustom/SelectionCustom";
 import PopupEditGenre from "../storysPage/storysGeners/components/popupEditGenre/PopupEditGenre";
-import PopupNormal from "@/components/commons/popups/popupNormal/PopupNormal";
 import PopupNormalTwoOption from "@/components/commons/popups/popupNormalTwoOption/PopupNormalTwoOption";
 import NormalInput from "@/components/commons/inputs/normalInput/NormalInput";
 import ChapterManagnent from "./components/chapterManagnent/ChapterManagnent";
@@ -97,7 +96,6 @@ const LeftSideTop = ({
       </ul>
       {isShowEditGenre && (
         <PopupEditGenre
-          storyInfoOld={storyInfoOld}
           genres={storyInfo["story_genre"]}
           updateGenres={(newGenres) =>
             setStoryUpdate("story_genre", newGenres, setNewInfoStory)
@@ -146,6 +144,11 @@ const StoryPicture = ({ picture, setNewInfoStory, newInfoStory }) => {
           }}
           btn2Cus={{
             color: "green",
+            disabled: !(
+              (valueImage.startsWith("https://") ||
+                valueImage.startsWith("http://")) &&
+              valueImage.length > 15
+            ),
             text: "Continue",
             onClick: handleChangeImage,
           }}
@@ -208,13 +211,14 @@ const ShowStoryInfoBelowPicture = ({
   storyInfo,
   setNewInfoStory,
 }) => {
-  const onSubmit = (newText) => {
-    setStoryUpdate(field, newText, setNewInfoStory);
-  };
+  // const onSubmit = (newText) => {
+  //   setStoryUpdate(field, newText, setNewInfoStory);
+  // };
   return (
     <li>
       <b>{label}: </b>{" "}
-      <EditableText onSubmit={onSubmit} initialText={storyInfo[field]} />
+      {/* <EditableText onSubmit={onSubmit} initialText={storyInfo[field]} /> */}
+      <span>{storyInfo[field]}</span>
     </li>
   );
 };

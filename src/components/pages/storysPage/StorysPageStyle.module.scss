@@ -2,3 +2,10 @@
 }
 .wrapTable {
 }
+.wrapControllerFooter {
+  padding: 20px;
+  margin-top: 20px;
+  &_btn {
+    width: 120px;
+  }
+}

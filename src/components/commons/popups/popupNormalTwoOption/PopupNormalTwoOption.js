@@ -16,7 +16,11 @@ export default function PopupNormalTwoOption({
         <ButtonNormal data-color-btn={btn1Cus.color} onClick={btn1Cus.onClick}>
           {btn1Cus.text}
         </ButtonNormal>
-        <ButtonNormal data-color-btn={btn2Cus.color} onClick={btn2Cus.onClick}>
+        <ButtonNormal
+          disabled={btn2Cus.disabled}
+          data-color-btn={btn2Cus.color}
+          onClick={btn2Cus.onClick}
+        >
           {btn2Cus.text}
         </ButtonNormal>
       </div>

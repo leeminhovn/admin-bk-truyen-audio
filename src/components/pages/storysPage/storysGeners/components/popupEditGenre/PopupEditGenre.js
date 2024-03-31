@@ -28,7 +28,12 @@ export default function PopupEditGenre({
     // setData([]);
     oriGinListSelected.current = listSelected;
     setIsShowEditGenre(false);
-    updateGenres(listSelected.join(", "));
+    const stringGenres = listSelected.join(", ");
+    updateGenres(
+      stringGenres.startsWith(", ")
+        ? stringGenres.replace(", ", "")
+        : stringGenres
+    );
   };
   return data.length === 0 ? (
     <PopupLoading />

@@ -7,6 +7,8 @@ import SearchHeaderStory from "./searchHeaderStory/SearchHeaderStory";
 import { useRouter } from "next/navigation";
 import StorysGeners from "./storysGeners/StorysGeners";
 import { useSelector } from "react-redux";
+import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
+import ButtonNormal from "@/components/commons/buttons/buttonNormal/ButtonNormal";
 const ConvertStatus = ["Update", "Complete", "Drop"];
 
 const columns = [
@@ -60,6 +62,7 @@ const ShowListStory = () => {
   const handleClickRow = (data) => {
     router.push(`/storys-managent/${data._id}`);
   };
+  const handleClickAddStory = () => {};
   return (
     <>
       <h1 className="titlePageManagent">Storys</h1>

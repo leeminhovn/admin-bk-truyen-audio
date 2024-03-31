@@ -21,6 +21,8 @@ import ListItemsNav from "./itemNav/ListItemsNav";
 import { useSelector } from "react-redux";
 import authorBlack from "@/../public/assets/images/icons/author_black.svg";
 import authorWhite from "@/../public/assets/images/icons/author_white.svg";
+import book_add_black from "@/../public/assets/images/icons/book_add_black.svg";
+import book_add_white from "@/../public/assets/images/icons/book_add_white.svg";
 
 import dashboard_black from "@/../public/assets/images/icons/dashboard_black.svg";
 import dashboard_white from "@/../public/assets/images/icons/dashboard_white.svg";
@@ -61,7 +63,9 @@ const dataNavLeft1 = [
     user_feedback_white,
     ["Admin"]
   ),
-
+  new Item(book_add_black, "New story ", "new-story", book_add_white, [
+    "Auhtor",
+  ]),
   // mail management
 ];
 

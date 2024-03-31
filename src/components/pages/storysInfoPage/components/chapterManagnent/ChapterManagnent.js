@@ -14,10 +14,11 @@ const columns = [
 
   // area
 ];
+const limitChapter = 20;
 export default function ChapterManagnent({ chapters }) {
   const [pageCurrent, setPageCurrent] = useState(0);
   const router = useRouter();
-  const maxPage = useRef(Math.ceil(chapters.length / 10));
+  const maxPage = useRef(Math.ceil(chapters.length / limitChapter));
   const handleClickRow = (data) => {
     router.push(window.location.href + "/" + data._id);
   };
@@ -87,7 +88,7 @@ export default function ChapterManagnent({ chapters }) {
         onClickRow={handleClickRow}
         isLoading={false}
         columns={columns}
-        data={[...chapters].splice(pageCurrent, 20)}
+        data={[...chapters].splice(pageCurrent * limitChapter, limitChapter)}
       />
     </>
   );

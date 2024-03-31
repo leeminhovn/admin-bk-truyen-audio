@@ -1,4 +1,4 @@
-import { get } from "./base";
+import { get, post } from "./base";
 import endpoints from "./endpoints";
 
 export const apiAdminGetInfoAccount = async (token) => {
@@ -57,18 +57,17 @@ export const deleteChapterById = async (chapter_id, token) => {
 };
 export const addChapter = async (newChapter, token) => {
   try {
-    alert("zoo");
     const endpoint = endpoints.ADD_CHAPTER;
     const { data } = await post(
       endpoint,
-      { body: { newChapter } },
-
+      { newChapter },
       {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
     return data;
   } catch (err) {
+    console.log(err);
     return null;
   }
 };
