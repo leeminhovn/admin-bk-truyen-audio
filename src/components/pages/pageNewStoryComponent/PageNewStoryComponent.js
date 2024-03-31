@@ -11,8 +11,12 @@ import PopupEditGenre from "../storysPage/storysGeners/components/popupEditGenre
 import PopupNormalTwoOption from "@/components/commons/popups/popupNormalTwoOption/PopupNormalTwoOption";
 import PopupLoading from "@/components/commons/popups/popupLoading/PopupLoading";
 import { useRouter } from "next/navigation";
+import { addStoryByAuthor } from "../../../../services/api/admin";
+import { getCookie } from "@/utils/features/localStorage";
+import { useSelector } from "react-redux";
 
 export default function PageNewStoryComponent() {
+  const { userInfo } = useSelector((state) => state.user);
   const [nameStory, setNameStory] = useState("");
   const [quickReview, setQuickReview] = useState("");
   const [genres, setGenres] = useState("");
@@ -35,6 +39,7 @@ export default function PageNewStoryComponent() {
   const handleSubmitStory = () => {
     handleChangePopupShow("iShowPopupSend", true);
   };
+
   return (
     <>
       {showPopup.isShowChangePicture && (
@@ -126,8 +131,17 @@ export default function PageNewStoryComponent() {
             Submit
           </ButtonNormal>
         </div>
-        {!showPopup.iShowPopupSend && (
+        {showPopup.iShowPopupSend && (
           <PopupConfirmSend
+            storySend={{
+              story_name: nameStory,
+              story_quick_review: quickReview,
+              completed_status: 0,
+              story_picture: linkPicture,
+              story_genre: genres,
+              chapters: [],
+              auhtor_name: userInfo.name,
+            }}
             setShowLoading={setShowLoading}
             handleChangePopupShow={handleChangePopupShow}
           />
@@ -187,18 +201,22 @@ const PopupShowChangeImage = ({
     </PopupNormalTwoOption>
   );
 };
-const PopupConfirmSend = ({ setShowLoading, handleChangePopupShow }) => {
+const PopupConfirmSend = ({
+  setShowLoading,
+  handleChangePopupShow,
+  storySend,
+}) => {
   const router = useRouter();
-
   const closePopup = () => {
     handleChangePopupShow("iShowPopupSend", false);
   };
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setShowLoading(true);
     closePopup();
     setTimeout(() => {
       router.push(process.env.NEXT_PUBLIC_WEB_URL + "mail-managent");
     }, 200);
+    await addStoryByAuthor(storySend, getCookie("adminToken"));
   };
   return (
     <PopupNormalTwoOption

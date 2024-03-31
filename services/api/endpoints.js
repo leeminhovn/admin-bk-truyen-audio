@@ -23,5 +23,8 @@ const endpoints = {
   DELETE_CHAPTER_BY_ID: "admin/delete-chapter-by-id",
   ADD_CHAPTER: "admin/add-chapter",
   EDIT_CHAPTER: "admin/edit-chapter",
+  AUTHOR_ADD_STORY_NEED_APPROVED: "admin/author/add-story-need-approved",
+  ADMIN_GET_STORIES_NEED_APPROVED: "admin/get-stories-need-approved",
+  UPDATE_MODERATION_STATUS: "admin/update-moderation-status",
 };
 export default endpoints;

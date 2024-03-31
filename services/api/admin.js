@@ -88,3 +88,22 @@ export const editChapter = async (editChapter, token) => {
     return null;
   }
 };
+
+export const addStoryByAuthor = async (story, token) => {
+  try {
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getStoryNeedApproved = async (token) => {
+  try {
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const updateModerationStatus = async (status, feedback, token) => {
+  try {
+  } catch (err) {
+    console.log(err);
+  }
+};
