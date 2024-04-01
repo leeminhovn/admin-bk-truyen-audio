@@ -132,6 +132,8 @@ export const updateModerationStatus = async (
   status,
   moderator_feedback,
   _id,
+  story,
+  author_id,
   token
 ) => {
   try {
@@ -141,6 +143,8 @@ export const updateModerationStatus = async (
       {
         status,
         moderator_feedback,
+        story,
+        author_id,
         _id,
       },
       {

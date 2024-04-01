@@ -26,6 +26,8 @@ export default function PopupCheckStory({ data, onCancel, setPageInfo }) {
       status,
       valueMessage,
       data._id,
+      data.story,
+      data.author_id,
       getCookie("adminToken")
     );
     setShowLoading(false);

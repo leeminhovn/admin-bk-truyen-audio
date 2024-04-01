@@ -33,11 +33,13 @@ export default function DashboardAuthor() {
         total_money_from_stories,
         total_storied_have_chance,
       } = data;
-      document.getElementById("total-storys").innerText = total_story;
-      document.getElementById("total-money").innerText =
-        total_money_from_stories;
-      document.getElementById("total-paid-story").innerText =
-        total_storied_have_chance;
+      const el1 = document.getElementById("total-storys");
+      const el2 = document.getElementById("total-money");
+      const el3 = document.getElementById("total-paid-story");
+
+      el1 && (el1.innerText = total_story);
+      el2 && (el2.innerText = total_money_from_stories);
+      el3 && (el3.innerText = total_storied_have_chance);
     });
   }, [userInfo]);
   return (
