@@ -71,7 +71,8 @@ export default function MailManagent() {
         const { data, totalData } = await getStoryNeedApproved(
           pageInfo.currentPage,
           pageInfo.limit,
-          getCookie("adminToken")
+          getCookie("adminToken"),
+          userInfo._id
         );
         setPageInfo("maxPage", totalData);
         setData(data);
