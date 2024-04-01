@@ -21,7 +21,6 @@ export default function DashboardAdmin() {
   useEffect(() => {
     setShowLoading(true);
     apiStaticticsAdmin().then((data) => {
-      console.log(data);
       setData(data);
       setShowLoading(false);
       const { total_story, count_free_user, count_paid_user } = data;

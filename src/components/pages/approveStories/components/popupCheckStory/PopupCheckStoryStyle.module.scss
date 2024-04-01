@@ -1,0 +1,61 @@
+.wrap {
+  width: 700px;
+  height: 500px;
+  overflow-y: overlay;
+  padding-bottom: 20px;
+  &_top {
+    width: 100%;
+    display: flex;
+  }
+  &_leftSide {
+    width: 250px;
+    &_imgStory {
+      cursor: pointer;
+      border-radius: 14px;
+    }
+    margin-right: 15px;
+    ul {
+    }
+    li {
+      font-size: 1.5rem;
+    }
+  }
+  &_rightSide {
+    flex-grow: 1;
+    h1 {
+      width: 100%;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+    p {
+      font-size: 1.6rem;
+      font-weight: 500;
+      min-height: 100px;
+    }
+    &_labelMessage {
+      font-size: 1.7rem;
+    }
+  }
+  &_bottom {
+    background-color: black;
+    height: 40px;
+    width: 100%;
+  }
+  &_messageFromAuthorLabel {
+    font-size: 1.7rem;
+    display: block;
+    margin-top: 15px;
+  }
+  &_adminMessage {
+    width: 100%;
+    margin: 10px 0px;
+    height: 200px;
+  }
+  &_footer {
+    display: flex;
+    justify-content: space-around;
+    button {
+      width: 130px;
+    }
+  }
+}

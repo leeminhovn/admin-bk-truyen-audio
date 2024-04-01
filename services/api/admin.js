@@ -116,7 +116,8 @@ export const getStoryNeedApproved = async (
 ) => {
   const endpoint = endpoints.ADMIN_GET_STORIES_NEED_APPROVED;
   try {
-    const dataSend = { page, limit };
+    const dataSend = { page: page, limit };
+
     author_id !== null && (dataSend.author_id = author_id);
     const { data } = await get(endpoint, {
       params: dataSend,
@@ -127,8 +128,25 @@ export const getStoryNeedApproved = async (
     console.log(err);
   }
 };
-export const updateModerationStatus = async (status, feedback, token) => {
+export const updateModerationStatus = async (
+  status,
+  moderator_feedback,
+  _id,
+  token
+) => {
   try {
+    const endpoint = endpoints.UPDATE_MODERATION_STATUS;
+    await post(
+      endpoint,
+      {
+        status,
+        moderator_feedback,
+        _id,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
   } catch (err) {
     console.log(err);
   }

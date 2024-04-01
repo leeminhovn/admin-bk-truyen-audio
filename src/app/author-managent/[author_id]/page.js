@@ -12,7 +12,6 @@ export default function page({ params: { author_id } }) {
         author_id,
         getCookie("adminToken")
       );
-      console.log(data);
       setData(data);
     };
     call();

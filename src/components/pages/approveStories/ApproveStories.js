@@ -1,28 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getStoryNeedApproved } from "../../../../services/api/admin";
-import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
-import { getCookie } from "@/utils/features/localStorage";
+import CardWrapLayout from "@/components/commons/cardsWrap/cardWrapLayout/CardWrapLayout";
+import styles from "./ApproveStoriesStyle.module.scss";
 import { formatDateFromIsoDateToNormalVnDate } from "@/utils/helpers";
-import NormalPagination from "@/components/commons/paginations/normalPagination/NormalPagination";
+import NormalTable from "@/components/commons/tables/normalTable/NormalTable";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import NormalPagination from "@/components/commons/paginations/normalPagination/NormalPagination";
+import { getStoryNeedApproved } from "../../../../services/api/admin";
+import { getCookie } from "@/utils/features/localStorage";
+import PopupCheckStory from "./components/popupCheckStory/PopupCheckStory";
+
 const columns = [
   {
     header: "Name",
     field: ["story", "story_name"],
-    width: "25%",
+    width: "20%",
     convertValue: (data) => {
       return data;
     },
   },
   {
-    header: "Moderation feedback",
-    field: ["moderator_feedback"],
-    width: "35%",
+    header: "Author",
+    field: ["story", "auhtor_name"],
+    width: "15%",
+    // gravity: "center",
   },
 
-  { header: "Message", field: ["author_message"], width: "20%" },
+  { header: "Message", field: ["author_message"], width: "30%" },
   {
     header: "Status",
     field: ["status"],
@@ -46,13 +51,13 @@ const columns = [
     convertValue: formatDateFromIsoDateToNormalVnDate,
     gravity: "center",
   },
-
-  // area
 ];
-export default function MailManagent() {
+
+export default function ApprovalStories() {
   const { userInfo } = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [showPopupCheckStory, setShowPopupCheckStory] = useState(null);
   const [pageInfo, setPageInfo] = useState({
     currentPage: 0,
     limit: 15,
@@ -80,11 +85,24 @@ export default function MailManagent() {
       };
       handleCallGetData();
     }
-  }, [userInfo]);
-  const handleClickRow = () => {};
+  }, [userInfo, pageInfo]);
+  const handleClickRow = (data) => {
+    console.log(data);
+    setShowPopupCheckStory(data);
+  };
+
   return (
     <>
-      <h1 className={"titlePageManagent"}>Mail</h1>
+      <h1 className="titlePageManagent">Approval stories</h1>
+      {showPopupCheckStory !== null && (
+        <PopupCheckStory
+          setPageInfo={setPageInfo}
+          onCancel={() => {
+            setShowPopupCheckStory(null);
+          }}
+          data={showPopupCheckStory}
+        />
+      )}
       <NormalPagination
         onPrev={() => {
           handleSetPageInfo("currentPage", pageInfo.currentPage - 1);
@@ -98,12 +116,14 @@ export default function MailManagent() {
         maxPage={pageInfo.maxPage}
         currentPage={pageInfo.currentPage}
       />
-      <NormalTable
-        onClickRow={handleClickRow}
-        isLoading={isLoading}
-        columns={columns}
-        data={data}
-      />
+      <CardWrapLayout className={styles.wrap}>
+        <NormalTable
+          onClickRow={handleClickRow}
+          isLoading={isLoading}
+          columns={columns}
+          data={data}
+        ></NormalTable>
+      </CardWrapLayout>
     </>
   );
 }

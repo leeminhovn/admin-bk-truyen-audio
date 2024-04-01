@@ -29,7 +29,7 @@ export default function NormalPagination({
       <div className={styles.wrap_gotoPage}>
         <NormalInput
           value={pageGoto}
-          onChange={({ target }) => setPageGoto(target.value)}
+          onChange={({ target }) => setPageGoto(Math.abs(target.value))}
           type="number"
         ></NormalInput>
         <ButtonNormal

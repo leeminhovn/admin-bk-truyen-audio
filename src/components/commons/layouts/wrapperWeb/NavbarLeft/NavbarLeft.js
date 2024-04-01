@@ -26,6 +26,8 @@ import book_add_white from "@/../public/assets/images/icons/book_add_white.svg";
 
 import dashboard_black from "@/../public/assets/images/icons/dashboard_black.svg";
 import dashboard_white from "@/../public/assets/images/icons/dashboard_white.svg";
+import book_approval_black from "@/../public/assets/images/icons/book_approval_black.svg";
+import book_approval_white from "@/../public/assets/images/icons/book_approval_white.svg";
 
 class Item {
   constructor(icon, title, link, activeIcon, role) {
@@ -48,14 +50,15 @@ const dataNavLeft1 = [
   ]),
   new Item(authorBlack, "Author ", "author-managent", authorWhite, ["Admin"]),
   new Item(user_black, "Users ", "users-managent", user_white, ["Admin"]),
+
+  new Item(mail_black, "Mail ", "mail-managent", mail_white, ["Auhtor"]),
   new Item(
-    notice_black,
-    "Notification ",
-    "notifications-managent",
-    notice_white,
+    book_approval_black,
+    "Approve stories",
+    "approve-stories",
+    book_approval_white,
     ["Admin"]
   ),
-  new Item(mail_black, "Mail ", "mail-managent", mail_white, ["Auhtor"]),
   new Item(
     user_feedback_black,
     "Feedback ",
@@ -63,9 +66,17 @@ const dataNavLeft1 = [
     user_feedback_white,
     ["Admin"]
   ),
+  new Item(
+    notice_black,
+    "Notification ",
+    "notifications-managent",
+    notice_white,
+    ["Admin"]
+  ),
   new Item(book_add_black, "New story ", "new-story", book_add_white, [
     "Auhtor",
   ]),
+
   // mail management
 ];
 
